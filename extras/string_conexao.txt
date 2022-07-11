@@ -1,0 +1,13 @@
+mysql://b7e49e9e32544b:f3b839fc@us-cdbr-east-06.cleardb.net/heroku_68b5bcd9dda39b7?reconnect=true
+
+mysql --host=us-cdbr-east-06.cleardb.net --user=b7e49e9e32544b --password=f3b839fc --reconnect heroku_68b5bcd9dda39b7
+
+principais comandos:
+
+heroku run node server.js
+heroku restart
+heroku local
+
+git add .
+git commit
+git push heroku master

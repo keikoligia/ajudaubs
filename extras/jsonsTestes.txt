@@ -1,0 +1,20 @@
+    {
+        "cns": "000000000000003",
+        "dataNascimento": "2004-05-18T03:00:00.000Z",
+        "nome": "Roberto Onofre",
+        "endereco": 1,
+        "senha": "senha123",
+        "telefone": "19994974619",
+        "email": "roberto@gmail.com",
+        "idUbs": "00000000001"
+    }
+
+    {
+        "idEndereco": 1,
+        "cep": "13088653",
+        "rua": "Rua das Gardenias",
+        "numero": 157,
+        "bairro": "Colina dos Pinheiros",
+        "municipio": "Campinas",
+        "estado": "SP"
+    }
