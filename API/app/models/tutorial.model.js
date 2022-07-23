@@ -5,7 +5,7 @@ const sql = require("./db.js");
   this.title = tutorial.title;
   this.description = tutorial.description;
   this.published = tutorial.published;
-};*/
+};
 
 const Paciente = function(paciente) {
   this.cns = paciente.cns;
@@ -29,7 +29,7 @@ Paciente.findById = (id, res) => {
       return res.status(404).json({error: 'Paciente nao encontrado'});
     }
   });
-};
+};*/
 
 /*
 Tutorial.create = (newTutorial, result) => {
@@ -141,5 +141,5 @@ Tutorial.removeAll = result => {
     result(null, res);
   });
 };
-*/
-module.exports = Paciente;
+module.exports = Paciente;*/
+
