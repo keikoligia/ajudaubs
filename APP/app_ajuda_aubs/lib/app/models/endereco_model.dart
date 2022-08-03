@@ -5,7 +5,7 @@ class Endereco {
   late String idEndereco;
   late String cep;
   late String rua;
-  late int numero;
+  late String numero;
   late String complemento;
 
   late String bairro;
@@ -30,7 +30,7 @@ class Endereco {
       idEndereco: map['idEndereco'] as String,
       cep: map['cep'] as String,
       rua: map['rua'] as String,
-      numero: map['numero'] as int,
+      numero: map['numero'] as String,
       bairro: map['bairro'] as String,
       municipio: map['municipio'] as String,
       complemento: map['complemento'] as String,
@@ -41,17 +41,40 @@ class Endereco {
   factory Endereco.fromJson(String source) =>
       Endereco.fromMap(json.decode(source) as Map<String, dynamic>);
 
+  static Endereco end = Endereco(
+      idEndereco: "222345678912345",
+      cep: '13088652',
+      rua: 'Rua Amadeu Gardini',
+      numero: '249',
+      bairro: 'Jardim Santana',
+      complemento: 'complemento',
+      municipio: 'Campinas',
+      estado: 'SP');
+
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'idEndereco': idEndereco,
-      'cep': cep,
-      'rua': rua,
-      'numero': numero,
-      'bairro': bairro,
-      'municipio': municipio,
-      'complemento': complemento,
-      'estado': estado,
+
+    return {
+      'idEndereco': end.idEndereco,
+      'cep': end.cep,
+      'rua': end.rua,
+      'numero': end.numero,
+      'bairro': end.bairro,
+      'municipio': end.municipio,
+      'complemento': end.complemento,
+      'estado': end.estado,
     };
+
+    /*
+    {
+      "idEndereco":"412345678912345",
+      "cep":"13088652",
+      "rua":"Rua Amadeu Gardini",
+      "numero":249,
+      "bairro":"Jardim Santana",
+      "municipio":"Campinas",
+      "complemento":"",
+      "estado":"SP"}
+     */
   }
 
   String toJson() => json.encode(toMap());
@@ -65,7 +88,7 @@ class Endereco {
     String? idEndereco,
     String? cep,
     String? rua,
-    int? numero,
+    String? numero,
     String? bairro,
     String? complemento,
     String? municipio,
@@ -101,11 +124,11 @@ class Endereco {
   int get hashCode {
     return idEndereco.hashCode ^
         cep.hashCode ^
-            rua.hashCode ^
-            numero.hashCode ^
-            bairro.hashCode ^
-            municipio.hashCode ^
-            complemento.hashCode ^
-            estado.hashCode;
+        rua.hashCode ^
+        numero.hashCode ^
+        bairro.hashCode ^
+        municipio.hashCode ^
+        complemento.hashCode ^
+        estado.hashCode;
   }
 }

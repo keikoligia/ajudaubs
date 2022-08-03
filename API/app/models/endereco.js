@@ -51,7 +51,7 @@ class Endereco {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Endereco WHERE idEndereco = " + result.insertId
+                var query2 = "SELECT * FROM Endereco WHERE idEndereco = " + user.idEndereco
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r[0]);

@@ -64,7 +64,7 @@ class CadastroController {
   );
 
   void verificarCad1(BuildContext context, String dataNascimento) {
-    this.dataNascimento = dataNascimento;
+    /* this.dataNascimento = dataNascimento;
 
     if (controllerNome.text.trim() == '') {
       ComponentsUtils.Mensagem(true, 'Nome inválido!', '', context);
@@ -94,12 +94,12 @@ class CadastroController {
 
     paciente.nome = controllerNome.text;
     paciente.dataNascimento = this.dataNascimento;
-    paciente.cns = controllerCns.text;
+    paciente.cns = controllerCns.text;*/
 
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => FormCad2View(cadastroController: this)));
+            builder: (_) => FormCad6View(cadastroController: this)));
   }
 
   void verificarCad2(BuildContext context) {
@@ -166,9 +166,8 @@ class CadastroController {
           true, 'Digite seu CEP e o consulte clicando no botão!', '', context);
     }
 
-    endereco.numero = int.parse(testeNum);
+    endereco.numero = testeNum;
     endereco.idEndereco = paciente.cns;
-
 
     paciente.endereco = paciente.cns;
 
@@ -228,14 +227,21 @@ class CadastroController {
 
   void verificarCad6(BuildContext context) async {
     try {
-      var sla = endereco.toJson();
-
-      var response = await http
-          .post(Uri.parse('http://localhost:5000/endereco'), body: endereco.toJson());
+      var response =
+          await http.post(Uri.parse('http://localhost:5000/endereco'), body: Endereco.end.toMap() /*{
+        'idEndereco': Endereco.end.idEndereco,
+        'cep': Endereco.end.cep,
+        'rua': Endereco.end.rua,
+        'numero': Endereco.end.rua,
+        'bairro': Endereco.end.bairro,
+        'municipio': Endereco.end.municipio,
+        'complemento': Endereco.end.complemento,
+        'estado': Endereco.end.estado,
+      }*/);
 
       if (response.statusCode == 200) {
-        response = await http.post(Uri.parse('http://localhost:5000/endereco'),
-            body: paciente);
+        response = await http.post(Uri.parse('http://localhost:5000/paciente'),
+            body: Paciente.pa.toMap());
 
         if (response.statusCode == 200) {
           Navigator.push(

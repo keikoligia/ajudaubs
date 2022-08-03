@@ -30,6 +30,9 @@ class Paciente {
     return Paciente.fromMap(jsonresponse);
   }
 
+  static Paciente pa = Paciente(cns: "222345678912345", dataNascimento: '2004-10-29T03:00:00.000Z', nome: 'Ligia Keiko Carvalho', 
+  endereco: '222345678912345', senha: 'Ligia123',  telefone: '19994974518', email: 'ligia@gmail.com', idUbs: '00000000002');
+
   String toJson() => json.encode(toMap());
 
   factory Paciente.fromMap(Map<String, dynamic> json) => Paciente(
