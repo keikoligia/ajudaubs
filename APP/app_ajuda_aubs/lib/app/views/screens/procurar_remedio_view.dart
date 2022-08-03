@@ -1,5 +1,5 @@
+import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:flutter/material.dart';
-import '../utils/components_widget.dart';
 
 class ProcurarRemedioView extends StatefulWidget {
   const ProcurarRemedioView({Key? key}) : super(key: key);

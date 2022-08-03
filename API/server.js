@@ -8,6 +8,7 @@ const sql = require("./app/models/db.js");
 
 const Paciente = require("./app/models/paciente.js");
 const Endereco = require("./app/models/endereco.js");
+const Ubs = require("./app/models/ubs.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -34,11 +35,14 @@ Paciente.getAllPaciente(app, sql);
 Paciente.postPaciente(app, sql);
 
 
-
 // Requisições PACIENTE
 Endereco.getEndereco(app, sql);
 Endereco.getAllEndereco(app, sql);
 Endereco.postEndereco(app, sql);
+
+// Requisições UBS
+Ubs.getUbs(app, sql);
+Ubs.getAllUbs(app, sql);
 
 
 require("./app/routes/tutorial.routes.js")(app);

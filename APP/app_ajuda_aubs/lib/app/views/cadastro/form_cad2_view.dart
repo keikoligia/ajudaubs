@@ -1,12 +1,13 @@
 import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/cadastro/form_cad3_view.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 
 class FormCad2View extends StatefulWidget {
   CadastroController cadastroController;
-  FormCad2View({Key? key, required this.cadastroController}) : super(key: key);
+  FormCad2View({
+    Key? key,
+    required this.cadastroController,
+  }) : super(key: key);
 
   @override
   State<FormCad2View> createState() => _FormCad2ViewState();
@@ -15,7 +16,7 @@ class FormCad2View extends StatefulWidget {
 class _FormCad2ViewState extends State<FormCad2View> {
   
 
-  DateTime dateTime = DateTime.now();
+  late DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {

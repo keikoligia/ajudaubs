@@ -109,7 +109,7 @@ class ComponentsUtils {
                 SizedBox(width: 10),
                 Text('Algo deu errado!',
                     style: TextStyle(
-                        color:  Color.fromARGB(255, 125, 149, 202),
+                        color: Color.fromARGB(255, 125, 149, 202),
                         fontWeight: FontWeight.bold,
                         fontSize: 24))
               ]),
@@ -239,30 +239,68 @@ class ComponentsUtils {
           TextEditingController controller,
           ValueChanged<String> onChanged,
           bool pega) =>
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      TextField(
+        enabled: pega,
+        keyboardType: tipo,
+        onChanged: onChanged,
+        onTap: ontap, //set it true, so that user will not able to edit text
+        controller: controller,
+        decoration: InputDecoration(
+          suffixIcon: icone,
+          label: Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        maxLines: maxLines,
+      );
+
+  static Widget TextValidation(
+          BuildContext context,
+          String label,
+          Function() ontap,
+          Icon icone,
+          TextEditingController controller) =>
+      Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SizedBox(height: 8),
-          Center(
-              child: TextField(
-            enabled: pega,
-            keyboardType: tipo,
-            onChanged: onChanged,
-            onTap: ontap, //set it true, so that user will not able to edit text
-            controller: controller,
-            decoration: InputDecoration(
-              suffixIcon: icone,
-              label: Text(
-                label,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            maxLines: maxLines,
-          )),
+          SizedBox(
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.text,
+                      controller: controller,
+                      decoration: InputDecoration(
+                        suffixIcon: icone,
+                        label: Text(
+                          label,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      )))),
+          SizedBox(
+              width: MediaQuery.of(context).size.width / 3,
+              child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
+                        onPrimary: Colors.white,
+                        primary: const Color.fromARGB(255, 125, 149, 202),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 12),
+                      ),
+                      onPressed: ontap,
+                      child: const Text('EDITAR'))))
         ],
       );
 }

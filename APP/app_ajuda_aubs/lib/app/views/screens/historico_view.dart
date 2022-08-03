@@ -1,6 +1,6 @@
+import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
-import '../utils/components_widget.dart';
 
 class HistoricoView extends StatefulWidget {
   const HistoricoView({Key? key}) : super(key: key);

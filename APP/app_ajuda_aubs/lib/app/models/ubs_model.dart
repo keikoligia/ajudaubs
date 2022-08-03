@@ -4,10 +4,10 @@ import 'dart:convert';
 class UBS {
   final String cnes;
   final String nome;
-  final int endereco;
+  final String endereco;
   final String senha;
   final String telefone;
-  final int idPrefeitura;
+  final String idPrefeitura;
   final String horario;
   final String email;
 
@@ -71,10 +71,10 @@ class UBS {
   UBS copyWith({
     String? cnes,
     String? nome,
-    int? endereco,
+    String? endereco,
     String? senha,
     String? telefone,
-    int? idPrefeitura,
+    String? idPrefeitura,
     String? horario,
     String? email,
   }) {
@@ -94,10 +94,10 @@ class UBS {
     return UBS(
       cnes: map['cnes'] as String,
       nome: map['nome'] as String,
-      endereco: map['endereco'] as int,
+      endereco: map['endereco'] as String,
       senha: map['senha'] as String,
       telefone: map['telefone'] as String,
-      idPrefeitura: map['idPrefeitura'] as int,
+      idPrefeitura: map['idPrefeitura'] as String,
       horario: map['horario'] as String,
       email: map['email'] as String,
     );
@@ -105,4 +105,17 @@ class UBS {
 
   factory UBS.fromJson(String source) =>
       UBS.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  static List<UBS> fromJsons(String str) {
+    final list = json.decode(str);
+
+    var users = <UBS>[];
+
+
+    for (int i = 0; i < list.length; i++) {
+          users.add(UBS.fromMap(list[i]));
+        }
+
+    return users;
+  }
 }

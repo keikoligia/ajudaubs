@@ -1,8 +1,9 @@
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:ajuda_ubs/app/utils/user.dart';
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
+
+import 'navigation_view.dart';
 
 // ignore: must_be_immutable
 class PerdaSenhaView extends StatefulWidget {
@@ -90,7 +91,7 @@ class _PerdaSenhaViewState extends State<PerdaSenhaView> {
                     ),
                     onPressed: () async {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const HomeView()));
+                          MaterialPageRoute(builder: (_) => const NavigationView()));
                     },
                     child: const Text(
                       'Recuperar acesso',

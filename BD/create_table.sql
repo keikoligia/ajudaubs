@@ -1,0 +1,182 @@
+
+
+create table Endereco( 
+idEndereco  varchar(15) primary key, 
+cep         char(8) not null, 
+rua         varchar(100), 
+numero      int not null, 
+complemento varchar(100), 
+bairro      varchar(100), 
+municipio   varchar(30), 
+estado      char(2) 
+);
+select * from Endereco;
+drop table Endereco;
+
+
+create table CargoArea( 
+idCargoArea int primary key auto_increment, 
+nomeCargo varchar(50) not null, 
+nomeArea varchar(50) not null 
+);
+select * from CargoArea;
+drop table CargoArea;
+
+
+create table Horario(
+idHorario int primary key auto_increment,
+dia varchar(30) not null,
+inicioHorario time not null,
+fimHorario time not null,      
+incioAlmoco time not null,
+fimAlmoco time not null
+);
+select * from Horario;
+drop table Horario;
+
+create table Prefeitura(
+municipio varchar(30) not null primary key,
+estado char(2) not null,
+senha varchar(30) not null,
+foneOuvidoria varchar(20),
+emailOuvidoria varchar(100)
+);
+select * from Prefeitura;
+drop table Prefeitura;
+
+
+create table TipoManifestacao(
+nome varchar(50) not null primary key,
+descricao varchar(300) not null
+);
+select * from TipoManifestacao;
+drop table TipoManifestacao;
+
+create table Remedio(
+idRemedio int primary key auto_increment,
+nomeTecnico varchar(30) not null,
+nomeComercial varchar(30) not null,
+descricao varchar(300)
+);
+select * from Remedio;
+drop table Remedio;
+
+create table Ubs(
+cnes char(11) primary key,
+nome varchar(50) not null,
+endereco varchar(30) not null,
+senha varchar(30) not null,
+telefone varchar(20) not null unique,
+idPrefeitura varchar(30) not null,
+horario varchar(50) not null,
+email varchar(100) not null unique,
+constraint fkUbsEndereco FOREIGN key (endereco) references Endereco (idEndereco),
+constraint fkUbsPrefitura FOREIGN key (idPrefeitura) references Prefeitura (municipio) 
+);
+select * from Ubs;
+drop table Ubs;
+
+
+create table Paciente( 
+cns char(15) primary key, 
+dataNascimento date not null, 
+nome varchar(100) not null,
+endereco varchar(30) not null,
+senha varchar(30) not null,
+telefone varchar(30) unique not null, 
+email varchar(100) unique not null,
+idUbs char(11) not null,
+constraint fkPacienteEndereco FOREIGN key (endereco) references Endereco (idEndereco),
+constraint fkPacienteUbs FOREIGN key (idUbs) references Ubs (cnes) 
+);
+select * from Paciente;
+drop table Paciente;
+
+
+create table Avaliacao(
+idAvaliacao int primary key auto_increment,
+idUbs char(11) not null, 
+idPaciente char(15) not null,
+avaliacao int not null,
+unique key a (idUbs, idPaciente),
+constraint fkAvaliacaoUbs FOREIGN key (idUbs) references Ubs (cnes),
+constraint fkAvaliacaoPaciente FOREIGN key (idPaciente) references Paciente (cns) 
+);
+select * from Avaliacao;
+drop table Avaliacao;
+
+
+
+create table Funcionario(
+cpf char(11) primary key,
+crm varchar(20) unique null,
+cargo int not null,
+nome varchar(100) not null,
+idUbs char(11) not null,
+idHorario int not null,
+constraint fkFuncionarioCargoArea  FOREIGN key (cargo) references CargoArea (idCargoArea), 
+constraint fkFuncionarioUbs   FOREIGN key (idUbs) references Ubs (cnes),
+constraint fkFuncionarioHorario   FOREIGN key (idHorario) references Horario (idHorario)
+);
+select * from Funcionario;
+drop table Funcionario;
+
+create table Disponibilidade(
+idDisponibilidade int primary key auto_increment,
+idMedico varchar(20) not null,
+idUbs char(11) not null,
+bloco bool not null,
+dataMarcada date not null,
+disponivel char(1) not null,
+constraint fkDisponibilidadeFuncionario FOREIGN key (idMedico) references Funcionario (crm),
+constraint fkDisponibilidadeUbs FOREIGN key (idUbs) references Ubs (cnes)
+);
+select * from Disponibilidade;
+drop table Disponibilidade;
+
+create table Consulta( 
+idConsulta int PRIMARY KEY auto_increment, 
+idMedico varchar(20) not null, 
+idPaciente char(15) not null,
+area int not null,
+idDisponibilidade int not null,
+descricao varchar(200) not null,            
+constraint fkConsultaCargoArea  FOREIGN key (area) references CargoArea (idCargoArea), 
+constraint fkConsultaPaciente   FOREIGN key (idPaciente) references Paciente (cns),
+constraint fkConsultaDisponibilidade   FOREIGN key (idDisponibilidade) references Disponibilidade (idDisponibilidade)
+);
+select * from Consulta;
+drop table Consulta;
+
+
+create table Manifestacao(
+idManifestacao int primary key auto_increment,
+idUbs char(11) not null,
+idPaciente char(15) null,
+tipo varchar(50) not null,
+status char(1) not null,
+descricao varchar(300) null,
+dataManifestacao date not null,
+protocolo char(8)  not null,
+constraint fkManifestacaoTipoManifestacao  FOREIGN key (tipo) references TipoManifestacao (nome), 
+constraint fkManifestacaoPaciente   FOREIGN key (idPaciente) references Paciente (cns)
+);
+select * from Manifestacao;
+drop table Manifestacao;
+
+create table RemedioUbs(
+idRemedioUbs int primary key auto_increment,
+idRemedio int not null,
+idUbs char(11) not null,
+quantidade int not null,
+dataValidade date not null,
+dataLote date not null,
+constraint fkRemedioUbsRemedio FOREIGN key (idRemedio) references Remedio (idRemedio), 
+constraint fkRemedioUbsUbs   FOREIGN key (idUbs) references Ubs (cnes)
+);
+select * from RemedioUbs;
+drop table RemedioUbs;
+
+
+
+

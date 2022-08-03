@@ -42,7 +42,8 @@ class Endereco {
     static postEndereco(app, sql) {
         app.post("/endereco", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Endereco (idEndereco, cep, rua, numero, bairro, municipio, estado) VALUES('" + user.idEndereco + "','" + user.cep + "','" + user.rua + "','" + user.numero + "','" + user.bairro + "','" + user.municipio + "','" + user.estado + "')";
+            var query = "INSERT INTO Endereco (idEndereco, cep, rua, complemento, numero, bairro, municipio, estado) "
+            +"VALUES('" + user.idEndereco + "','" + user.cep + "','" + user.rua + "','" + user.complemento + "'," + user.numero + ",'" + user.bairro + "','" + user.municipio + "','" + user.estado + "')";
             console.log(user);
             console.log(query);
 

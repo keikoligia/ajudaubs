@@ -1,10 +1,11 @@
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/utils/utils.dart';
 import 'package:ajuda_ubs/app/views/manifestacao/form_man5_view.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:ajuda_ubs/app/utils/user.dart';
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
+import 'dart:convert';
+import 'dart:math';
 
 // ignore: must_be_immutable
 class FormMan4View extends StatefulWidget {
@@ -22,6 +23,7 @@ class _FormMan4ViewState extends State<FormMan4View> {
   late int qtdImagns = 0;
 
   late bool temImagens = false;
+  static final Random _random = Random.secure();
 
   String nome = '';
   String funcao = '';
@@ -41,6 +43,11 @@ class _FormMan4ViewState extends State<FormMan4View> {
     controllerNome.dispose();
     controllerFuncao.dispose();
     super.dispose();
+  }
+
+  static String gerarProtocolo([int length = 32]) {
+    var values = List<int>.generate(length, (i) => _random.nextInt(256));
+    return base64Url.encode(values);
   }
 
   @override
@@ -120,8 +127,7 @@ class _FormMan4ViewState extends State<FormMan4View> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => FormMan5View(
-                                        protocolo:
-                                            UtilsData.GerarProtocolo(6))));
+                                        protocolo: gerarProtocolo(6))));
                           },
                           child: const Icon(Icons.arrow_forward)),
 

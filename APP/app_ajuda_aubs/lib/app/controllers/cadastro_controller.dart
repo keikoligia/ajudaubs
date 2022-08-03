@@ -2,9 +2,14 @@
 import 'package:ajuda_ubs/app/models/endereco_model.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
 import 'package:ajuda_ubs/app/models/result_cep_model.dart';
+import 'package:ajuda_ubs/app/models/ubs_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:ajuda_ubs/app/views/cadastro/form_cad2_view.dart';
 import 'package:ajuda_ubs/app/views/cadastro/form_cad3_view.dart';
+import 'package:ajuda_ubs/app/views/cadastro/form_cad4_view.dart';
+import 'package:ajuda_ubs/app/views/cadastro/form_cad5_view.dart';
+import 'package:ajuda_ubs/app/views/cadastro/form_cad6_view.dart';
+import 'package:ajuda_ubs/app/views/cadastro/form_cad7_view.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,6 +33,17 @@ class CadastroController {
   late TextEditingController controllerSen2;
   late TextEditingController controllerSen1;
 
+  late List<String> dropOpcoes = ['UBS 1', 'UBS 2', 'UBS 3', 'UBS 4'];
+  late ValueNotifier<String> dropValue = ValueNotifier('');
+
+  late String dataNascimento = '';
+
+  late List<UBS> ubs;
+
+  var opcoes = <String>[];
+
+  CadastroController.constructor1();
+
   CadastroController(
     this.paciente,
     this.endereco,
@@ -43,29 +59,13 @@ class CadastroController {
     this.controllerComp,
     this.controllerSen2,
     this.controllerSen1,
+    this.dropOpcoes,
+    this.dropValue,
   );
-/*
-
-  CadastroController(this.paciente, this.endereco, this.controllerNome,
-      this.controllerData, this.controllerCns);
-*/
-  TextEditingController getControlTelefone() {
-    return controllerTelefone;
-  }
-
-  void setControlTelefone(TextEditingController te) {
-    controllerTelefone = te;
-  }
-
-  TextEditingController getControlEmail() {
-    return controllerEmail;
-  }
-
-  void setControlEmail(TextEditingController te) {
-    controllerEmail = te;
-  }
 
   void verificarCad1(BuildContext context, String dataNascimento) {
+    this.dataNascimento = dataNascimento;
+
     if (controllerNome.text.trim() == '') {
       ComponentsUtils.Mensagem(true, 'Nome inválido!', '', context);
       return;
@@ -88,14 +88,18 @@ class CadastroController {
     }
 
     if (teste.length != 15) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => FormCad2View(cadastroController: this)));
-    } else {
       ComponentsUtils.Mensagem(
           true, 'Cartão Nacional de Saúde inválido!', '', context);
     }
+
+    paciente.nome = controllerNome.text;
+    paciente.dataNascimento = this.dataNascimento;
+    paciente.cns = controllerCns.text;
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => FormCad2View(cadastroController: this)));
   }
 
   void verificarCad2(BuildContext context) {
@@ -112,14 +116,18 @@ class CadastroController {
       return;
     }
 
-    if (teste.length == 11 || teste.length == 8) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => FormCad3View(cadastroController: this)));
-    } else {
+    if (teste.length != 11 && teste.length != 8) {
       ComponentsUtils.Mensagem(true, 'Telefone inválido!', '', context);
+      return;
     }
+
+    paciente.email = controllerEmail.text;
+    paciente.telefone = controllerTelefone.text;
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => FormCad3View(cadastroController: this)));
   }
 
   void verificarCad3(BuildContext context) {
@@ -157,12 +165,91 @@ class CadastroController {
       ComponentsUtils.Mensagem(
           true, 'Digite seu CEP e o consulte clicando no botão!', '', context);
     }
+
+    endereco.numero = int.parse(testeNum);
+    endereco.idEndereco = paciente.cns;
+
+
+    paciente.endereco = paciente.cns;
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => FormCad4View(cadastroController: this)));
+  }
+
+  void verificarCad4(BuildContext context) {
+    if (dropValue.value.isEmpty) {
+      ComponentsUtils.Mensagem(true, 'Selecione uma UBS!', '', context);
+      return;
+    }
+
+    String value = dropValue.value;
+
+    for (int i = 0; i < ubs.length; i++) {
+      UBS u = ubs.elementAt(i);
+      if (value == u.nome) {
+        paciente.idUbs = u.cnes;
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => FormCad5View(cadastroController: this)));
+
+        return;
+      }
+    }
+  }
+
+  void verificarCad5(BuildContext context) {
+    if (controllerSen1.text.trim() == '') {
+      ComponentsUtils.Mensagem(true, 'Digite uma senha.', '', context);
+      return;
+    }
+
+    if (controllerSen2.text.trim() == '') {
+      ComponentsUtils.Mensagem(true, 'Confirme sua senha.', '', context);
+      return;
+    }
+
+    if (controllerSen2.text.trim() != controllerSen1.text.trim()) {
+      ComponentsUtils.Mensagem(
+          true, 'As duas senhas não são iguais.', '', context);
+      return;
+    }
+
+    paciente.senha = controllerSen2.text;
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => FormCad6View(cadastroController: this)));
+  }
+
+  void verificarCad6(BuildContext context) async {
+    try {
+      var sla = endereco.toJson();
+
+      var response = await http
+          .post(Uri.parse('http://localhost:5000/endereco'), body: endereco.toJson());
+
+      if (response.statusCode == 200) {
+        response = await http.post(Uri.parse('http://localhost:5000/endereco'),
+            body: paciente);
+
+        if (response.statusCode == 200) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const FormCad7View()));
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   bool isValidDate(String input) {
     try {
       final date = DateTime.parse(input);
-
       final originalFormatString = toOriginalFormatString(date);
       return input == originalFormatString;
     } catch (e) {
@@ -182,27 +269,9 @@ class CadastroController {
     return reg.hasMatch(email);
   }
 
-  bool loading = false;
-  bool enableField = true;
-  late String result = '';
   late String cepVerifica = '';
 
-  void searching(bool enable) {
-    result = (enable) ? '' : result;
-    loading = enable;
-    enableField = !enable;
-  }
-
-  Widget circularLoading() {
-    return const SizedBox(
-      height: 15.0,
-      width: 15.0,
-      child: CircularProgressIndicator(),
-    );
-  }
-
   Future searchCep(BuildContext context) async {
-    searching(true);
     final cep = controllerCep.text;
 
     try {
@@ -217,20 +286,36 @@ class CadastroController {
 
         controllerRua.text = resultCep.logradouro;
 
-        searching(false);
+        endereco.cep = controllerCep.text;
+        endereco.rua = controllerRua.text;
+        endereco.bairro = resultCep.bairro;
+        endereco.complemento = resultCep.complemento;
+
+        endereco.municipio = resultCep.localidade;
+        endereco.estado = resultCep.uf;
         return;
       }
     } catch (e) {
+      print(e);
       controllerBairro.text = '';
       controllerRua.text = '';
     }
 
     ComponentsUtils.Mensagem(true, 'CEP Inválido', '', context);
-
-    searching(false);
   }
 
-  // var dropOpcoes = ['UBS 1', 'UBS 2', 'UBS 3', 'UBS 4'];
-  // final dropValue = ValueNotifier('');
-
+  void loadingUBS() async {
+    try {
+      var response = await http.get(Uri.parse('http://localhost:5000/ubs'));
+      if (response.statusCode == 200) {
+        ubs = UBS.fromJsons(response.body);
+        for (int i = 0; i < ubs.length; i++) {
+          opcoes.add(ubs.elementAt(i).nome);
+        }
+        dropOpcoes = opcoes;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }

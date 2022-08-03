@@ -5,7 +5,7 @@ class Paciente {
   late String cns;
   late String dataNascimento;
   late String nome;
-  late int endereco;
+  late String endereco;
   late String senha;
   late String telefone;
   late String email;
@@ -27,7 +27,7 @@ class Paciente {
 
   factory Paciente.fromJson(String str) {
     final jsonresponse = json.decode(str);
-    return Paciente.fromMap(jsonresponse[0]);
+    return Paciente.fromMap(jsonresponse);
   }
 
   String toJson() => json.encode(toMap());

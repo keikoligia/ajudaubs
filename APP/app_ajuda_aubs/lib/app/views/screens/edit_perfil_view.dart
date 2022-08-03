@@ -1,7 +1,7 @@
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
+import 'package:ajuda_ubs/app/utils/user.dart';
+import 'package:ajuda_ubs/app/utils/user_preferences.dart';
 import 'package:flutter/material.dart';
-import '../utils/user.dart';
-import '../utils/user_preferences.dart';
 
 class EditPerfilView extends StatefulWidget {
   const EditPerfilView({Key? key}) : super(key: key);

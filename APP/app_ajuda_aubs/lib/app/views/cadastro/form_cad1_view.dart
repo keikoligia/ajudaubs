@@ -1,13 +1,19 @@
 import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/models/endereco_model.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
+import 'package:ajuda_ubs/app/models/ubs_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/cadastro/form_cad2_view.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:intl/intl.dart';
 
 class FormCad1View extends StatefulWidget {
-  const FormCad1View({Key? key}) : super(key: key);
+  CadastroController? cadastroController;
+  bool inicio;
+  FormCad1View(
+      {Key? key, required this.cadastroController, required this.inicio})
+      : super(key: key);
 
   @override
   State<FormCad1View> createState() => _FormCad1ViewState();
@@ -57,6 +63,9 @@ class _FormCad1ViewState extends State<FormCad1View> {
     controllerRua = TextEditingController();
     controllerBairro = TextEditingController();
 
+    late List<String> dropOpcoes = ['UBS 1', 'UBS 2', 'UBS 3', 'UBS 4'];
+    late ValueNotifier<String> dropValue = ValueNotifier('');
+
     controllerSen2 = TextEditingController();
     controllerSen1 = TextEditingController();
 
@@ -74,7 +83,11 @@ class _FormCad1ViewState extends State<FormCad1View> {
         controllerRua,
         controllerComp,
         controllerSen2,
-        controllerSen1);
+        controllerSen1,
+        dropOpcoes,
+        dropValue);
+
+    cadastroController.loadingUBS();
   }
 
   @override
@@ -120,7 +133,9 @@ class _FormCad1ViewState extends State<FormCad1View> {
                         TextInputType.text,
                         const Icon(Icons.person),
                         () {},
-                        controllerNome, (email) {
+                        (!widget.inicio)
+                            ? widget.cadastroController!.controllerNome
+                            : controllerNome, (email) {
                       nome = email;
                     }, true),
                   ),
@@ -132,31 +147,37 @@ class _FormCad1ViewState extends State<FormCad1View> {
                           1,
                           'Data de nascimento',
                           TextInputType.datetime,
-                          const Icon(Icons.calendar_today),
-                          () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(DateTime.now().year -
-                                    120), //DateTime.now() - not to allow to choose before today.
-                                lastDate: DateTime.now());
+                          const Icon(Icons.calendar_today), () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(DateTime.now().year -
+                                120), //DateTime.now() - not to allow to choose before today.
+                            lastDate: DateTime.now());
 
-                            if (pickedDate != null) {
-                              setState(() {
-                                controllerData.text =
-                                    DateFormat('dd/MM/yyyy').format(pickedDate);
+                        if (pickedDate != null) {
+                          setState(() {
+                            if (!widget.inicio) {
+                              widget.cadastroController!.dataNascimento =
+                                  DateFormat('dd/MM/yyyy').format(pickedDate);
 
-                                cns = controllerData.text;
+                              cns = widget
+                                  .cadastroController!.controllerData.text;
+                            } else {
+                              controllerData.text =
+                                  DateFormat('dd/MM/yyyy').format(pickedDate);
+                              cns = controllerData.text;
 
-                                dataNascimento =
-                                    DateFormat('yyyy-MM-dd').format(pickedDate);
-                              }); //formatted date output using intl package =>  2021-03-16
+                              dataNascimento =
+                                  DateFormat('yyyy-MM-dd').format(pickedDate);
                             }
-                          },
-                          controllerData,
-                          (email) {
-                            controllerData.text = cns;
-                          },
+                          }); //formatted date output using intl package =>  2021-03-16
+                        }
+                      },
+                          (!widget.inicio)
+                              ? widget.cadastroController!.controllerData
+                              : controllerData,
+                          (email) {},
                           true)),
                   const SizedBox(height: 15),
                   Padding(
@@ -168,7 +189,9 @@ class _FormCad1ViewState extends State<FormCad1View> {
                           TextInputType.number,
                           const Icon(Icons.add_card),
                           () {},
-                          controllerCns,
+                          (!widget.inicio)
+                              ? widget.cadastroController!.controllerCns
+                              : controllerCns,
                           (email) {},
                           true)),
                   const SizedBox(height: 15),
@@ -181,8 +204,15 @@ class _FormCad1ViewState extends State<FormCad1View> {
                             horizontal: 32, vertical: 12),
                       ),
                       onPressed: () {
-                        cadastroController.verificarCad1(
-                            context, dataNascimento);
+                        if (!widget.inicio) {
+                          widget.cadastroController!.verificarCad1(context,
+                              widget.cadastroController!.dataNascimento);
+                        } else {
+                          cadastroController.dataNascimento = dataNascimento;
+
+                          cadastroController.verificarCad1(
+                              context, dataNascimento);
+                        }
                       },
                       child: const Icon(Icons.arrow_forward)),
                   const SizedBox(height: 15)

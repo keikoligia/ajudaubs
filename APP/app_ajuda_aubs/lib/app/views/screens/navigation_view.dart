@@ -1,19 +1,19 @@
-import 'package:ajuda_ubs/app/views/cadastro/form_cad1_view.dart';
-import 'package:ajuda_ubs/app/views/login_view.dart';
 import 'package:ajuda_ubs/app/views/manifestacao/form_man1_view.dart';
-import 'package:ajuda_ubs/app/views/perfil_view.dart';
-import 'package:ajuda_ubs/app/views/procurar_remedio_view.dart';
 import 'package:flutter/material.dart';
+import 'home_view.dart';
+import 'login_view.dart';
+import 'perfil_view.dart';
+import 'procurar_remedio_view.dart';
 //import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class NavigationView extends StatefulWidget {
+  const NavigationView({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<NavigationView> createState() => _NavigationViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _NavigationViewState extends State<NavigationView> {
   int paginaAtual = 0;
   late PageController pageController;
 
@@ -38,7 +38,7 @@ class _HomeViewState extends State<HomeView> {
           onPageChanged: onTapped,
           controller: pageController,
           children: const [
-            FormCad1View(),
+            HomeView(),
             ProcurarRemedioView(),
             FormMan1View(),
             LoginView(),

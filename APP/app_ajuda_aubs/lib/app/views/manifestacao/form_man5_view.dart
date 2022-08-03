@@ -1,4 +1,4 @@
-import 'package:ajuda_ubs/app/views/home_view.dart';
+import 'package:ajuda_ubs/app/views/screens/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:ajuda_ubs/app/utils/user.dart';
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
@@ -114,7 +114,7 @@ class _FormMan5ViewState extends State<FormMan5View> {
                     ),
                     onPressed: () async {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const HomeView()));
+                          MaterialPageRoute(builder: (_) => const NavigationView()));
                     },
                     child: const Text('CONCLUIR')),
               ],

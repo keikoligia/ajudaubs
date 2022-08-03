@@ -1,8 +1,8 @@
-import 'package:ajuda_ubs/app/views/edit_perfil_view.dart';
-import 'package:ajuda_ubs/app/views/ubs_view.dart';
+import 'package:ajuda_ubs/app/utils/components_widget.dart';
+import 'package:ajuda_ubs/app/utils/user_preferences.dart';
 import 'package:flutter/material.dart';
-import '../utils/user_preferences.dart';
-import '../utils/components_widget.dart';
+import 'edit_perfil_view.dart';
+import 'ubs_view.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _PerfilViewState extends State<PerfilView> {
             children: [
               const SizedBox(height: 30),
               ComponentsUtils.ImagePerson(
-                  context, user.imagePath, false, () async {}),
+                  context, user.imagePath, false, () {}),
               const SizedBox(height: 15),
               Column(
                 children: [

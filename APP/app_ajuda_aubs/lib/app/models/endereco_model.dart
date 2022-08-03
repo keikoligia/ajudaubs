@@ -2,10 +2,12 @@
 import 'dart:convert';
 
 class Endereco {
-  late int idEndereco;
+  late String idEndereco;
   late String cep;
   late String rua;
   late int numero;
+  late String complemento;
+
   late String bairro;
   late String municipio;
   late String estado;
@@ -18,19 +20,20 @@ class Endereco {
     required this.rua,
     required this.numero,
     required this.bairro,
+    required this.complemento,
     required this.municipio,
     required this.estado,
   });
-  //late String complemento;
 
   factory Endereco.fromMap(Map<String, dynamic> map) {
     return Endereco(
-      idEndereco: map['idEndereco'] as int,
+      idEndereco: map['idEndereco'] as String,
       cep: map['cep'] as String,
       rua: map['rua'] as String,
       numero: map['numero'] as int,
       bairro: map['bairro'] as String,
       municipio: map['municipio'] as String,
+      complemento: map['complemento'] as String,
       estado: map['estado'] as String,
     );
   }
@@ -46,6 +49,7 @@ class Endereco {
       'numero': numero,
       'bairro': bairro,
       'municipio': municipio,
+      'complemento': complemento,
       'estado': estado,
     };
   }
@@ -58,11 +62,12 @@ class Endereco {
   }
 
   Endereco copyWith({
-    int? idEndereco,
+    String? idEndereco,
     String? cep,
     String? rua,
     int? numero,
     String? bairro,
+    String? complemento,
     String? municipio,
     String? estado,
   }) {
@@ -73,6 +78,7 @@ class Endereco {
       numero: numero ?? this.numero,
       bairro: bairro ?? this.bairro,
       municipio: municipio ?? this.municipio,
+      complemento: complemento ?? this.complemento,
       estado: estado ?? this.estado,
     );
   }
@@ -87,6 +93,7 @@ class Endereco {
         other.numero == numero &&
         other.bairro == bairro &&
         other.municipio == municipio &&
+        other.complemento == complemento &&
         other.estado == estado;
   }
 
@@ -94,10 +101,11 @@ class Endereco {
   int get hashCode {
     return idEndereco.hashCode ^
         cep.hashCode ^
-        rua.hashCode ^
-        numero.hashCode ^
-        bairro.hashCode ^
-        municipio.hashCode ^
-        estado.hashCode;
+            rua.hashCode ^
+            numero.hashCode ^
+            bairro.hashCode ^
+            municipio.hashCode ^
+            complemento.hashCode ^
+            estado.hashCode;
   }
 }

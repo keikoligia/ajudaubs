@@ -1,10 +1,7 @@
 import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
-import 'package:ajuda_ubs/app/models/result_cep_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/cadastro/form_cad4_view.dart';
 import 'package:flutter/material.dart';
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class FormCad3View extends StatefulWidget {
   CadastroController cadastroController;
@@ -70,7 +67,7 @@ class _FormCad3ViewState extends State<FormCad3View> {
                                   () {},
                                   widget.cadastroController.controllerCep,
                                   (cepp) {},
-                                  widget.cadastroController.enableField))),
+                                  true))),
                       const SizedBox(height: 15),
                       Padding(
                           padding: const EdgeInsets.only(right: 20),
@@ -142,9 +139,7 @@ class _FormCad3ViewState extends State<FormCad3View> {
                           onPressed: () {
                             widget.cadastroController.searchCep(context);
                           },
-                          child: widget.cadastroController.loading
-                              ? widget.cadastroController.circularLoading()
-                              : const Text('Consultar CEP')),
+                          child: const Text('Consultar CEP')),
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: const StadiumBorder(),

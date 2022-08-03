@@ -1,7 +1,7 @@
 import 'package:ajuda_ubs/app/controllers/login_controller.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/home_view.dart';
+import 'package:ajuda_ubs/app/views/screens/navigation_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatefulWidget {
@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => const HomeView()));
+                                        builder: (_) => const NavigationView()));
                               },
                               child: const Text("Esqueceu a senha?",
                                   textAlign: TextAlign.right,
