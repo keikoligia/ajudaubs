@@ -2,6 +2,7 @@ import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FormCad3View extends StatefulWidget {
   CadastroController cadastroController;
@@ -153,6 +154,18 @@ class _FormCad3ViewState extends State<FormCad3View> {
                           },
                           child: const Icon(Icons.arrow_forward))
                     ]),
+                const SizedBox(height: 15),
+                GestureDetector(
+                  child: const Text(
+                    'Não sei meu CEP',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 125, 149, 202),
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onTap: () => launch(
+                      'https://buscacepinter.correios.com.br/app/endereco/index.php'),
+                )
               ]),
             )));
   }

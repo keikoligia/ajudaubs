@@ -14,6 +14,8 @@ class FormCad6View extends StatefulWidget {
 }
 
 class _FormCad6ViewState extends State<FormCad6View> {
+  bool senhaVisivel = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -223,16 +225,66 @@ class _FormCad6ViewState extends State<FormCad6View> {
                             fontSize: 20),
                       )),
                   const SizedBox(height: 10),
-                  ComponentsUtils.TextValidation(context, 'Senha', () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => FormCad1View(
-                                  cadastroController: widget.cadastroController,
-                                  inicio: false,
-                                )));
-                  }, const Icon(Icons.password),
-                      widget.cadastroController.controllerSen1),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: TextField(
+                                obscureText: senhaVisivel,
+                                keyboardType: TextInputType.visiblePassword,
+                                controller:
+                                    widget.cadastroController.controllerSen1,
+                                decoration: InputDecoration(
+                                  suffixIcon: GestureDetector(
+                                      child: (senhaVisivel == true)
+                                          ? const Icon(Icons.visibility_off)
+                                          : const Icon(Icons.visibility),
+                                      onTap: () {
+                                        setState(() {
+                                          senhaVisivel = !senhaVisivel;
+                                        });
+                                      }),
+                                  label: const Text(
+                                    'Senha',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                              ))),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width / 3,
+                          child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: const StadiumBorder(),
+                                    onPrimary: Colors.white,
+                                    primary: const Color.fromARGB(
+                                        255, 125, 149, 202),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 12),
+                                  ),
+                                  onPressed: () {
+                                    MaterialPageRoute(
+                                        builder: (_) => FormCad1View(
+                                              cadastroController:
+                                                  widget.cadastroController,
+                                              inicio: false,
+                                            ));
+                                  },
+                                  child: const Text('EDITAR'))))
+                    ],
+                  ),
 
                   const SizedBox(height: 15),
                   ElevatedButton(

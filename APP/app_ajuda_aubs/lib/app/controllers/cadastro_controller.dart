@@ -63,8 +63,8 @@ class CadastroController {
     this.dropValue,
   );
 
-  void verificarCad1(BuildContext context, String dataNascimento) {
-    /* this.dataNascimento = dataNascimento;
+  void verificarCad1(BuildContext context, String dataNascimento) {/*
+    this.dataNascimento = dataNascimento;
 
     if (controllerNome.text.trim() == '') {
       ComponentsUtils.Mensagem(true, 'Nome inválido!', '', context);
@@ -99,10 +99,10 @@ class CadastroController {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (_) => FormCad6View(cadastroController: this)));
+            builder: (_) => FormCad2View(cadastroController: this)));
   }
 
-  void verificarCad2(BuildContext context) {
+  void verificarCad2(BuildContext context) {/*
     if (!isValidEmail(controllerEmail.text)) {
       ComponentsUtils.Mensagem(true, 'Email inválido!', '', context);
       return;
@@ -122,7 +122,7 @@ class CadastroController {
     }
 
     paciente.email = controllerEmail.text;
-    paciente.telefone = controllerTelefone.text;
+    paciente.telefone = controllerTelefone.text;*/
 
     Navigator.push(
         context,
@@ -130,7 +130,7 @@ class CadastroController {
             builder: (_) => FormCad3View(cadastroController: this)));
   }
 
-  void verificarCad3(BuildContext context) {
+  void verificarCad3(BuildContext context) {/*
     String testeCep = controllerCep.text.trim();
 
     try {
@@ -169,7 +169,7 @@ class CadastroController {
     endereco.numero = testeNum;
     endereco.idEndereco = paciente.cns;
 
-    paciente.endereco = paciente.cns;
+    paciente.endereco = paciente.cns;*/
 
     Navigator.push(
         context,
@@ -185,18 +185,30 @@ class CadastroController {
 
     String value = dropValue.value;
 
-    for (int i = 0; i < ubs.length; i++) {
-      UBS u = ubs.elementAt(i);
-      if (value == u.nome) {
-        paciente.idUbs = u.cnes;
+    Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => FormCad5View(cadastroController: this)));
 
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (_) => FormCad5View(cadastroController: this)));
+    if (ubs != null || !ubs.isEmpty) {
+      for (int i = 0; i < ubs.length; i++) {
+        UBS u = ubs.elementAt(i);
+        if (value == u.nome) {
+          paciente.idUbs = u.cnes;
 
-        return;
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => FormCad5View(cadastroController: this)));
+
+          return;
+        }
       }
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => FormCad5View(cadastroController: this)));
     }
   }
 
@@ -227,17 +239,9 @@ class CadastroController {
 
   void verificarCad6(BuildContext context) async {
     try {
-      var response =
-          await http.post(Uri.parse('http://localhost:5000/endereco'), body: Endereco.end.toMap() /*{
-        'idEndereco': Endereco.end.idEndereco,
-        'cep': Endereco.end.cep,
-        'rua': Endereco.end.rua,
-        'numero': Endereco.end.rua,
-        'bairro': Endereco.end.bairro,
-        'municipio': Endereco.end.municipio,
-        'complemento': Endereco.end.complemento,
-        'estado': Endereco.end.estado,
-      }*/);
+      var response = await http.post(
+          Uri.parse('http://localhost:5000/endereco'),
+          body: Endereco.end.toMap());
 
       if (response.statusCode == 200) {
         response = await http.post(Uri.parse('http://localhost:5000/paciente'),

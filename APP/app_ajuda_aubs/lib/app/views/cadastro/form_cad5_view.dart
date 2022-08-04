@@ -13,6 +13,8 @@ class FormCad5View extends StatefulWidget {
 }
 
 class _FormCad5ViewState extends State<FormCad5View> {
+  bool senhaVisivel = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,29 +51,57 @@ class _FormCad5ViewState extends State<FormCad5View> {
             const SizedBox(height: 15),
             Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: ComponentsUtils.TextFieldEdit(
-                    context,
-                    1,
-                    'Senha',
-                    TextInputType.visiblePassword,
-                    const Icon(Icons.password),
-                    () {},
-                    widget.cadastroController.controllerSen1,
-                    (cepp) {},
-                    true)),
+                child: TextField(
+                  obscureText: senhaVisivel,
+                  keyboardType: TextInputType.visiblePassword,
+                  controller: widget.cadastroController.controllerSen1,
+                  decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                        child: (senhaVisivel == true)
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                        onTap: () {
+                          setState(() {
+                            senhaVisivel = !senhaVisivel;
+                          });
+                        }),
+                    label: const Text(
+                      'Senha',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                )),
             const SizedBox(height: 15),
             Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: ComponentsUtils.TextFieldEdit(
-                    context,
-                    1,
-                    'Digite a senha novamente',
-                    TextInputType.visiblePassword,
-                    const Icon(Icons.password),
-                    () {},
-                    widget.cadastroController.controllerSen2,
-                    (cepp) {},
-                    true)),
+                child: TextField(
+                  obscureText: senhaVisivel,
+                  keyboardType: TextInputType.visiblePassword,
+                  controller: widget.cadastroController.controllerSen2,
+                  decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                        child: (senhaVisivel == true)
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                        onTap: () {
+                          setState(() {
+                            senhaVisivel = !senhaVisivel;
+                          });
+                        }),
+                    label: const Text(
+                      'Digite a senha novamente',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                )),
             const SizedBox(height: 15),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(

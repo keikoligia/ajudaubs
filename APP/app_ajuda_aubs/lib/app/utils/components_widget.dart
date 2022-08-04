@@ -84,8 +84,12 @@ class ComponentsUtils {
                         fontSize: 18),
                   ),
                 )),
-            ComponentsUtils.ButtonTextColor(context, textButton, onClick,
-                const Color.fromARGB(255, 125, 149, 202)),
+            ComponentsUtils.ButtonTextColor(
+              context,
+              textButton,
+              onClick,
+              cor,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -258,12 +262,8 @@ class ComponentsUtils {
         maxLines: maxLines,
       );
 
-  static Widget TextValidation(
-          BuildContext context,
-          String label,
-          Function() ontap,
-          Icon icone,
-          TextEditingController controller) =>
+  static Widget TextValidation(BuildContext context, String label,
+          Function() ontap, Icon icone, TextEditingController controller) =>
       Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
