@@ -1,8 +1,12 @@
+import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/controllers/login_controller.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
+import 'package:ajuda_ubs/app/views/cadastro/form_cad1_view.dart';
 import 'package:ajuda_ubs/app/views/screens/navigation_view.dart';
 import 'package:flutter/material.dart';
+
+import 'perca_senha_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -81,7 +85,8 @@ class _LoginViewState extends State<LoginView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => const NavigationView()));
+                                        builder: (_) =>
+                                            const PerdaSenhaView()));
                               },
                               child: const Text("Esqueceu a senha?",
                                   textAlign: TextAlign.right,
@@ -91,20 +96,40 @@ class _LoginViewState extends State<LoginView> {
                                       fontSize: 15,
                                       decoration: TextDecoration.underline)),
                             ),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  shape: const StadiumBorder(),
-                                  onPrimary: Colors.white,
-                                  primary:
-                                      const Color.fromARGB(255, 177, 193, 228),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 32, vertical: 12),
-                                ),
-                                onPressed: () async {
-                                  pacienteController.verificarLogin(context);
-                                },
-                                child: const Text('ENTRAR'))
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => FormCad1View(
+                                            cadastroController: null,
+                                            inicio: true)));
+                              },
+                              child: const Text("Não possui usuário?",
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(138, 162, 212, 1),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      decoration: TextDecoration.underline)),
+                            ),
                           ]),
+                      const SizedBox(height: 15),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: const StadiumBorder(),
+                                onPrimary: Colors.white,
+                                primary:
+                                    const Color.fromARGB(255, 177, 193, 228),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 12),
+                              ),
+                              onPressed: () async {
+                                pacienteController.verificarLogin(context);
+                              },
+                              child: const Text('ENTRAR'))),
                       const SizedBox(height: 15),
                     ],
                   ),

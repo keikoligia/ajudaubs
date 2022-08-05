@@ -18,17 +18,14 @@ class _FormMan2ViewState extends State<FormMan2View> {
   User user = UserPreferences.myUser;
   var dropOpcoes = ['UBS 1', 'UBS 2', 'UBS 3', 'UBS 4'];
 
-  String nome = 'Fabricio Onofre Rezende de Camargo';
-  String funcao = '19994974618';
-
   late final TextEditingController controllerNome;
   late final TextEditingController controllerFuncao;
 
   @override
   void initState() {
     super.initState();
-    controllerNome = TextEditingController(text: nome);
-    controllerFuncao = TextEditingController(text: funcao);
+    controllerNome = TextEditingController();
+    controllerFuncao = TextEditingController();
   }
 
   @override
@@ -132,9 +129,7 @@ class _FormMan2ViewState extends State<FormMan2View> {
                       child: Center(
                           child: TextField(
                         keyboardType: TextInputType.text,
-                        onChanged: (cepp) {
-                          nome = cepp;
-                        },
+                        onChanged: (cepp) {},
                         onTap: () {
                           // _showMyDialog('Descrição',
                           //     'Descreva o conteúdo de sua manifestação. Seja claro e objetivo. Informações pessoais, inclusive identificação, não devem ser inseridas a não ser que sejam essenciais para a caracterização da manifestação.');
@@ -155,9 +150,8 @@ class _FormMan2ViewState extends State<FormMan2View> {
                   const Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 20),
-                          child: Text('0/500',
-                              textAlign: TextAlign.left))),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text('0/500', textAlign: TextAlign.left))),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),

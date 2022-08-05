@@ -1,4 +1,3 @@
-
 import 'package:ajuda_ubs/app/views/screens/navigation_view.dart';
 import 'package:ajuda_ubs/app/views/screens/splash_view.dart';
 import 'package:ajuda_ubs/app/views/screens/welcome_view.dart';

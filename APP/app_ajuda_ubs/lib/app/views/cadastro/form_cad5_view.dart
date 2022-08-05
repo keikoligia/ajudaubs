@@ -95,7 +95,7 @@ class _FormCad5ViewState extends State<FormCad5View> {
                     label: const Text(
                       'Digite a senha novamente',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),

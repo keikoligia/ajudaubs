@@ -36,7 +36,7 @@ class _FormMan1ViewState extends State<FormMan1View> {
                                 fontSize: 26),
                           ),
                           const SizedBox(
-                            height: 70,
+                            height: 50,
                           ),
                           ComponentsUtils.CardOption(
                               context,

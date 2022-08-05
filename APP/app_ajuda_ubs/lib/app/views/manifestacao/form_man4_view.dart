@@ -136,40 +136,4 @@ class _FormMan4ViewState extends State<FormMan4View> {
                   ),
                 ]))));
   }
-
-  Future<void> showMyDialog(String titulo, String texto) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Icon(Icons.error_outline),
-                const SizedBox(width: 10),
-                Text(titulo,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 24))
-              ]),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(texto),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Certo'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

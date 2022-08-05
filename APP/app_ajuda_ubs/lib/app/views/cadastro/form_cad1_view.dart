@@ -99,21 +99,36 @@ class _FormCad1ViewState extends State<FormCad1View> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
+                //crossAxisAlignment: CrossAxisAlignment,
                 children: [
                   const SizedBox(height: 30),
-                  const Text(
+                  /*const Text(
                     'CADASTRO',
                     style: TextStyle(
                         color: Color.fromARGB(255, 138, 161, 212),
                         fontWeight: FontWeight.bold,
                         fontSize: 24),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 5),*/
+
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width / 5,
+                          child: const LinearProgressIndicator(
+                              value: 0.2,
+                              color: Color.fromRGBO(138, 162, 212, 1)))),
+                  const SizedBox(height: 60),
                   const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
-                      child: LinearProgressIndicator(
-                          value: 0.2, color: Color.fromRGBO(138, 162, 212, 1))),
-                  const SizedBox(height: 100),
+                      child: Text(
+                        'Boas-vindas ao AjudaUBS!',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 79, 103, 155),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 27),
+                      )),
+                  const SizedBox(height: 60),
                   const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Text(

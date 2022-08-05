@@ -77,11 +77,11 @@ class ComponentsUtils {
                   // ignore: unnecessary_const
                   child: Text(
                     text,
-                    textAlign: TextAlign.justify,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Color.fromARGB(255, 138, 161, 212),
                         fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                        fontSize: 17),
                   ),
                 )),
             ComponentsUtils.ButtonTextColor(
