@@ -2,11 +2,10 @@
 import 'dart:convert';
 
 class Prefeitura {
-  final int idTipoManifestacao;
   final String nome;
   final String descricao;
+
   Prefeitura({
-    required this.idTipoManifestacao,
     required this.nome,
     required this.descricao,
   });
@@ -15,7 +14,6 @@ class Prefeitura {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'idTipoManifestacao': idTipoManifestacao,
       'nome': nome,
       'descricao': descricao,
     };
@@ -27,7 +25,6 @@ class Prefeitura {
     String? descricao,
   }) {
     return Prefeitura(
-      idTipoManifestacao: idTipoManifestacao ?? this.idTipoManifestacao,
       nome: nome ?? this.nome,
       descricao: descricao ?? this.descricao,
     );
@@ -35,7 +32,6 @@ class Prefeitura {
 
   factory Prefeitura.fromMap(Map<String, dynamic> map) {
     return Prefeitura(
-      idTipoManifestacao: map['idTipoManifestacao'] as int,
       nome: map['nome'] as String,
       descricao: map['descricao'] as String,
     );
@@ -45,19 +41,15 @@ class Prefeitura {
       Prefeitura.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'Prefeitura(idTipoManifestacao: $idTipoManifestacao, nome: $nome, descricao: $descricao)';
+  String toString() => 'Prefeitura(nome: $nome, descricao: $descricao)';
 
   @override
   bool operator ==(covariant Prefeitura other) {
     if (identical(this, other)) return true;
 
-    return other.idTipoManifestacao == idTipoManifestacao &&
-        other.nome == nome &&
-        other.descricao == descricao;
+    return other.nome == nome && other.descricao == descricao;
   }
 
   @override
-  int get hashCode =>
-      idTipoManifestacao.hashCode ^ nome.hashCode ^ descricao.hashCode;
+  int get hashCode => nome.hashCode ^ descricao.hashCode;
 }

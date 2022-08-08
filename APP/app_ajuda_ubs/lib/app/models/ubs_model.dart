@@ -10,17 +10,22 @@ class UBS {
   final String idPrefeitura;
   final String horario;
   final String email;
+  final double latitude;
+  final double longitude;
+  final String fotoUrl;
 
-  UBS({
-    required this.cnes,
-    required this.nome,
-    required this.endereco,
-    required this.senha,
-    required this.telefone,
-    required this.idPrefeitura,
-    required this.horario,
-    required this.email,
-  });
+  UBS(
+      {required this.cnes,
+      required this.nome,
+      required this.endereco,
+      required this.senha,
+      required this.telefone,
+      required this.idPrefeitura,
+      required this.horario,
+      required this.email,
+      required this.latitude,
+      required this.longitude,
+      required this.fotoUrl});
 
   String toJson() => json.encode(toMap());
 
@@ -34,12 +39,17 @@ class UBS {
       'idPrefeitura': idPrefeitura,
       'horario': horario,
       'email': email,
+      'latitude': latitude,
+      'longitude': longitude,
+      'fotoUrl': fotoUrl,
     };
   }
 
   @override
   String toString() {
-    return 'UBS(cnes: $cnes, nome: $nome, endereco: $endereco, senha: $senha, telefone: $telefone, idPrefeitura: $idPrefeitura, horario: $horario, email: $email)';
+    return 'UBS(cnes: $cnes, nome: $nome, endereco: $endereco, senha: $senha,'
+        'telefone: $telefone, idPrefeitura: $idPrefeitura, horario: $horario, email: $email,'
+        'latitude: $latitude, longitude: $longitude,  fotoUrl: $fotoUrl)';
   }
 
   @override
@@ -53,7 +63,10 @@ class UBS {
         other.telefone == telefone &&
         other.idPrefeitura == idPrefeitura &&
         other.horario == horario &&
-        other.email == email;
+        other.email == email &&
+        other.longitude == longitude &&
+        other.latitude == latitude &&
+        other.fotoUrl == fotoUrl;
   }
 
   @override
@@ -65,7 +78,10 @@ class UBS {
         telefone.hashCode ^
         idPrefeitura.hashCode ^
         horario.hashCode ^
-        email.hashCode;
+        email.hashCode ^
+        latitude.hashCode ^
+        longitude.hashCode ^
+        fotoUrl.hashCode;
   }
 
   UBS copyWith({
@@ -77,6 +93,9 @@ class UBS {
     String? idPrefeitura,
     String? horario,
     String? email,
+    double? latitude,
+    double? longitude,
+    String? fotoUrl,
   }) {
     return UBS(
       cnes: cnes ?? this.cnes,
@@ -87,6 +106,9 @@ class UBS {
       idPrefeitura: idPrefeitura ?? this.idPrefeitura,
       horario: horario ?? this.horario,
       email: email ?? this.email,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      fotoUrl: fotoUrl ?? this.fotoUrl,
     );
   }
 
@@ -100,6 +122,9 @@ class UBS {
       idPrefeitura: map['idPrefeitura'] as String,
       horario: map['horario'] as String,
       email: map['email'] as String,
+      latitude: map['latitude'] as double,
+      longitude: map['longitude'] as double,
+      fotoUrl: map['fotoUrl'] as String,
     );
   }
 
@@ -111,10 +136,9 @@ class UBS {
 
     var users = <UBS>[];
 
-
     for (int i = 0; i < list.length; i++) {
-          users.add(UBS.fromMap(list[i]));
-        }
+      users.add(UBS.fromMap(list[i]));
+    }
 
     return users;
   }

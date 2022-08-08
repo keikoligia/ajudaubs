@@ -2,32 +2,32 @@
 import 'dart:convert';
 
 class Horario {
-  final int idHorario;
   final String dia;
   final String inicioHorario;
   final String fimHorario;
   final String incioAlmoco;
   final String fimAlmoco;
+  final String idFuncionario;
 
   Horario({
-    required this.idHorario,
     required this.dia,
     required this.inicioHorario,
     required this.fimHorario,
     required this.incioAlmoco,
     required this.fimAlmoco,
+    required this.idFuncionario,
   });
 
   //final String complemento;
 
   factory Horario.fromMap(Map<String, dynamic> map) {
     return Horario(
-      idHorario: map['idHorario'] as int,
       dia: map['dia'] as String,
       inicioHorario: map['inicioHorario'] as String,
       fimHorario: map['fimHorario'] as String,
       incioAlmoco: map['incioAlmoco'] as String,
       fimAlmoco: map['fimAlmoco'] as String,
+      idFuncionario: map['idFuncionario'] as String,
     );
   }
 
@@ -36,12 +36,12 @@ class Horario {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'idHorario': idHorario,
       'dia': dia,
       'inicioHorario': inicioHorario,
       'fimHorario': fimHorario,
       'incioAlmoco': incioAlmoco,
       'fimAlmoco': fimAlmoco,
+      'idFuncionario': idFuncionario,
     };
   }
 
@@ -49,24 +49,24 @@ class Horario {
 
   @override
   String toString() {
-    return 'Horario(idHorario: $idHorario, dia: $dia, inicioHorario: $inicioHorario, fimHorario: $fimHorario, incioAlmoco: $incioAlmoco, fimAlmoco: $fimAlmoco)';
+    return 'Horario(dia: $dia, inicioHorario: $inicioHorario, fimHorario: $fimHorario, incioAlmoco: $incioAlmoco, fimAlmoco: $fimAlmoco, idFuncionario: $idFuncionario)';
   }
 
   Horario copyWith({
-    int? idHorario,
     String? dia,
     String? inicioHorario,
     String? fimHorario,
     String? incioAlmoco,
     String? fimAlmoco,
+    String? idFuncionario,
   }) {
     return Horario(
-      idHorario: idHorario ?? this.idHorario,
       dia: dia ?? this.dia,
       inicioHorario: inicioHorario ?? this.inicioHorario,
       fimHorario: fimHorario ?? this.fimHorario,
       incioAlmoco: incioAlmoco ?? this.incioAlmoco,
       fimAlmoco: fimAlmoco ?? this.fimAlmoco,
+      idFuncionario: idFuncionario ?? this.idFuncionario,
     );
   }
 
@@ -74,21 +74,21 @@ class Horario {
   bool operator ==(covariant Horario other) {
     if (identical(this, other)) return true;
 
-    return other.idHorario == idHorario &&
-        other.dia == dia &&
+    return other.dia == dia &&
         other.inicioHorario == inicioHorario &&
         other.fimHorario == fimHorario &&
         other.incioAlmoco == incioAlmoco &&
-        other.fimAlmoco == fimAlmoco;
+        other.fimAlmoco == fimAlmoco &&
+        other.idFuncionario == idFuncionario;
   }
 
   @override
   int get hashCode {
-    return idHorario.hashCode ^
-        dia.hashCode ^
+    return dia.hashCode ^
         inicioHorario.hashCode ^
         fimHorario.hashCode ^
         incioAlmoco.hashCode ^
-        fimAlmoco.hashCode;
+        fimAlmoco.hashCode ^
+        idFuncionario.hashCode;
   }
 }

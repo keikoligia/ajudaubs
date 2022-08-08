@@ -4,10 +4,11 @@ import 'dart:convert';
 class Funcionario {
   final String cpf;
   final String crm;
-  final int cargo;
+  final String cargo;
   final String nome;
   final String idUbs;
   final int idHorario;
+
   Funcionario({
     required this.cpf,
     required this.crm,
@@ -58,7 +59,7 @@ class Funcionario {
   Funcionario copyWith({
     String? cpf,
     String? crm,
-    int? cargo,
+    String? cargo,
     String? nome,
     String? idUbs,
     int? idHorario,
@@ -77,7 +78,7 @@ class Funcionario {
     return Funcionario(
         cpf: map['cpf'] as String,
         crm: map['crm'] as String,
-        cargo: map['cargo'] as int,
+        cargo: map['cargo'] as String,
         nome: map['nome'] as String,
         idUbs: map['idUbs'] as String,
         idHorario: map['idHorario'] as int);

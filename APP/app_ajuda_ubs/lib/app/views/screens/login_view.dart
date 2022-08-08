@@ -1,9 +1,7 @@
-import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/controllers/login_controller.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:ajuda_ubs/app/views/cadastro/form_cad1_view.dart';
-import 'package:ajuda_ubs/app/views/screens/navigation_view.dart';
 import 'package:flutter/material.dart';
 
 import 'perca_senha_view.dart';

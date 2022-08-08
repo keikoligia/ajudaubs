@@ -23,7 +23,6 @@ class Paciente {
       required this.email,
       required this.idUbs});
 
-  // ignore: empty_constructor_bodies
 
   factory Paciente.fromJson(String str) {
     final jsonresponse = json.decode(str);

@@ -262,6 +262,7 @@ class ComponentsUtils {
         maxLines: maxLines,
       );
 
+  // ignore: non_constant_identifier_names
   static Widget TextValidation(BuildContext context, String label,
           Function() ontap, Icon icone, TextEditingController controller) =>
       Row(

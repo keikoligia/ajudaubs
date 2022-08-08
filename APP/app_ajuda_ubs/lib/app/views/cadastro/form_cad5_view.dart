@@ -1,8 +1,7 @@
 import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
-import 'package:ajuda_ubs/app/utils/components_widget.dart';
-import 'package:ajuda_ubs/app/views/cadastro/form_cad6_view.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FormCad5View extends StatefulWidget {
   CadastroController cadastroController;
 
@@ -26,18 +25,21 @@ class _FormCad5ViewState extends State<FormCad5View> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 30),
-            const Text(
-              'CADASTRO',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 138, 161, 212),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24),
-            ),
+            SizedBox(
+                width: MediaQuery.of(context).size.width / 4,
+                child: const Text(
+                  'CADASTRO',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 138, 161, 212),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )),
             const SizedBox(height: 5),
-            const Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
-                child: LinearProgressIndicator(
-                    value: 1, color: Color.fromRGBO(138, 162, 212, 1))),
+            SizedBox(
+                width: MediaQuery.of(context).size.width / 4,
+                child: const LinearProgressIndicator(
+                    value: 0.80, color: Color.fromRGBO(138, 162, 212, 1))),
             const SizedBox(height: 100),
             const Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),

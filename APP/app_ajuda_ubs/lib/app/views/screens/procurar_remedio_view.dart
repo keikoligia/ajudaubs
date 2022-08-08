@@ -27,6 +27,9 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
 
   @override
   Widget build(BuildContext context) {
+
+    
+
     return Scaffold(
         body: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -53,7 +56,11 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
                           'Nome do Remédio',
                           TextInputType.text,
                           const Icon(Icons.search),
-                          () {},
+                          () {
+                            setState(() {
+                              
+                            });
+                          },
                           controllerEmail, (function) {
                         email = function;
                       }, true)),

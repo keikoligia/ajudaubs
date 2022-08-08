@@ -4,8 +4,6 @@ import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:ajuda_ubs/app/views/cadastro/form_cad1_view.dart';
 import 'package:flutter/material.dart';
 
-import 'login_view.dart';
-
 class WelcomeView extends StatefulWidget {
   const WelcomeView({Key? key}) : super(key: key);
 
@@ -114,9 +112,9 @@ class _WelcomeViewState extends State<WelcomeView> {
                     width: MediaQuery.of(context).size.width - 50,
                     child: ComponentsUtils.ButtonTextColor(
                         context, 'Já tenho conta', () {
-                      //Navigator.of(context).pushReplacementNamed('/login');
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const LoginView()));
+                      Navigator.of(context).pushReplacementNamed('/login');
+                    /*  Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const LoginView()));*/
                     }, const Color.fromARGB(255, 177, 193, 228))),
                 const SizedBox(height: 15),
                 SizedBox(

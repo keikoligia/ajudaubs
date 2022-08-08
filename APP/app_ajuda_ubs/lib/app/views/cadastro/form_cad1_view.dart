@@ -1,13 +1,12 @@
 import 'package:ajuda_ubs/app/controllers/cadastro_controller.dart';
 import 'package:ajuda_ubs/app/models/endereco_model.dart';
 import 'package:ajuda_ubs/app/models/paciente_model.dart';
-import 'package:ajuda_ubs/app/models/ubs_model.dart';
 import 'package:ajuda_ubs/app/utils/components_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class FormCad1View extends StatefulWidget {
   CadastroController? cadastroController;
   bool inicio;
@@ -97,118 +96,108 @@ class _FormCad1ViewState extends State<FormCad1View> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: SingleChildScrollView(
+                child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 //crossAxisAlignment: CrossAxisAlignment,
                 children: [
                   const SizedBox(height: 30),
-                  /*const Text(
-                    'CADASTRO',
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 4,
+                      child: const Text(
+                        'CADASTRO',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 138, 161, 212),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15),
+                      )),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width / 4,
+                      child: const LinearProgressIndicator(
+                          value: 0.16,
+                          color: Color.fromRGBO(138, 162, 212, 1))),
+                  const SizedBox(height: 60),
+                  const Text(
+                    'Boas-vindas ao AjudaUBS!',
                     style: TextStyle(
-                        color: Color.fromARGB(255, 138, 161, 212),
+                        color: Color.fromARGB(255, 79, 103, 155),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 27),
+                  ),
+                  const SizedBox(height: 60),
+                  const Text(
+                    'Fale um pouco sobre você :)',
+                    style: TextStyle(
+                        color: Color.fromRGBO(138, 162, 212, 1),
                         fontWeight: FontWeight.bold,
                         fontSize: 24),
                   ),
-                  const SizedBox(height: 5),*/
-
-                  Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: SizedBox(
-                          width: MediaQuery.of(context).size.width / 5,
-                          child: const LinearProgressIndicator(
-                              value: 0.2,
-                              color: Color.fromRGBO(138, 162, 212, 1)))),
-                  const SizedBox(height: 60),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(
-                        'Boas-vindas ao AjudaUBS!',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 79, 103, 155),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 27),
-                      )),
-                  const SizedBox(height: 60),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text(
-                        'Fale um pouco sobre você :)',
-                        style: TextStyle(
-                            color: Color.fromRGBO(138, 162, 212, 1),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24),
-                      )),
                   const SizedBox(height: 15),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: ComponentsUtils.TextFieldEdit(
-                        context,
-                        1,
-                        'Nome completo',
-                        TextInputType.text,
-                        const Icon(Icons.person),
-                        () {},
-                        (!widget.inicio)
-                            ? widget.cadastroController!.controllerNome
-                            : controllerNome, (email) {
-                      nome = email;
-                    }, true),
-                  ),
+                  ComponentsUtils.TextFieldEdit(
+                      context,
+                      1,
+                      'Nome completo',
+                      TextInputType.text,
+                      const Icon(Icons.person),
+                      () {},
+                      (!widget.inicio)
+                          ? widget.cadastroController!.controllerNome
+                          : controllerNome, (email) {
+                    nome = email;
+                  }, true),
                   const SizedBox(height: 15),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: ComponentsUtils.TextFieldEdit(
-                          context,
-                          1,
-                          'Data de nascimento',
-                          TextInputType.datetime,
-                          const Icon(Icons.calendar_today), () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(DateTime.now().year -
-                                120), //DateTime.now() - not to allow to choose before today.
-                            lastDate: DateTime.now());
+                  ComponentsUtils.TextFieldEdit(
+                      context,
+                      1,
+                      'Data de nascimento',
+                      TextInputType.datetime,
+                      const Icon(Icons.calendar_today), () async {
+                    DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(DateTime.now().year -
+                            120), //DateTime.now() - not to allow to choose before today.
+                        lastDate: DateTime.now());
 
-                        if (pickedDate != null) {
-                          setState(() {
-                            if (!widget.inicio) {
-                              widget.cadastroController!.dataNascimento =
-                                  DateFormat('dd/MM/yyyy').format(pickedDate);
+                    if (pickedDate != null) {
+                      setState(() {
+                        if (!widget.inicio) {
+                          widget.cadastroController!.dataNascimento =
+                              DateFormat('dd/MM/yyyy').format(pickedDate);
 
-                              cns = widget
-                                  .cadastroController!.controllerData.text;
-                            } else {
-                              controllerData.text =
-                                  DateFormat('dd/MM/yyyy').format(pickedDate);
-                              cns = controllerData.text;
+                          cns = widget.cadastroController!.controllerData.text;
+                        } else {
+                          controllerData.text =
+                              DateFormat('dd/MM/yyyy').format(pickedDate);
+                          cns = controllerData.text;
 
-                              dataNascimento =
-                                  DateFormat('yyyy-MM-dd').format(pickedDate);
-                            }
-                          }); //formatted date output using intl package =>  2021-03-16
+                          dataNascimento =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
                         }
-                      },
-                          (!widget.inicio)
-                              ? widget.cadastroController!.controllerData
-                              : controllerData,
-                          (email) {},
-                          true)),
+                      }); //formatted date output using intl package =>  2021-03-16
+                    }
+                  },
+                      (!widget.inicio)
+                          ? widget.cadastroController!.controllerData
+                          : controllerData,
+                      (email) {},
+                      true),
                   const SizedBox(height: 15),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: ComponentsUtils.TextFieldEdit(
-                          context,
-                          1,
-                          'Cartão Nacional de Saúde - CNS',
-                          TextInputType.number,
-                          const Icon(Icons.add_card),
-                          () {},
-                          (!widget.inicio)
-                              ? widget.cadastroController!.controllerCns
-                              : controllerCns,
-                          (email) {},
-                          true)),
+                  ComponentsUtils.TextFieldEdit(
+                      context,
+                      1,
+                      'Cartão Nacional de Saúde - CNS',
+                      TextInputType.number,
+                      const Icon(Icons.add_card),
+                      () {},
+                      (!widget.inicio)
+                          ? widget.cadastroController!.controllerCns
+                          : controllerCns,
+                      (email) {},
+                      true),
                   const SizedBox(height: 15),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -233,6 +222,6 @@ class _FormCad1ViewState extends State<FormCad1View> {
                   const SizedBox(height: 15)
                 ],
               ),
-            )));
+            ))));
   }
 }

@@ -190,7 +190,7 @@ class CadastroController {
           MaterialPageRoute(
               builder: (_) => FormCad5View(cadastroController: this)));
 
-    if (ubs != null || !ubs.isEmpty) {
+    if (ubs.isNotEmpty) {
       for (int i = 0; i < ubs.length; i++) {
         UBS u = ubs.elementAt(i);
         if (value == u.nome) {

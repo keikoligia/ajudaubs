@@ -2,23 +2,19 @@
 import 'dart:convert';
 
 class CargoArea {
-  final int idCargoArea;
   final String nomeCargo;
   final String nomeArea;
 
   CargoArea(
-    this.idCargoArea,
     this.nomeCargo,
     this.nomeArea,
   );
 
   CargoArea copyWith({
-    int? idCargoArea,
     String? nomeCargo,
     String? nomeArea,
   }) {
     return CargoArea(
-      idCargoArea ?? this.idCargoArea,
       nomeCargo ?? this.nomeCargo,
       nomeArea ?? this.nomeArea,
     );
@@ -26,7 +22,6 @@ class CargoArea {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'idCargoArea': idCargoArea,
       'nomeCargo': nomeCargo,
       'nomeArea': nomeArea,
     };
@@ -34,7 +29,6 @@ class CargoArea {
 
   factory CargoArea.fromMap(Map<String, dynamic> map) {
     return CargoArea(
-      map['idCargoArea'] as int,
       map['nomeCargo'] as String,
       map['nomeArea'] as String,
     );
@@ -46,19 +40,15 @@ class CargoArea {
       CargoArea.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'CargoArea(idCargoArea: $idCargoArea, nomeCargo: $nomeCargo, nomeArea: $nomeArea)';
+  String toString() => 'CargoArea(nomeCargo: $nomeCargo, nomeArea: $nomeArea)';
 
   @override
   bool operator ==(covariant CargoArea other) {
     if (identical(this, other)) return true;
 
-    return other.idCargoArea == idCargoArea &&
-        other.nomeCargo == nomeCargo &&
-        other.nomeArea == nomeArea;
+    return other.nomeCargo == nomeCargo && other.nomeArea == nomeArea;
   }
 
   @override
-  int get hashCode =>
-      idCargoArea.hashCode ^ nomeCargo.hashCode ^ nomeArea.hashCode;
+  int get hashCode => nomeCargo.hashCode ^ nomeArea.hashCode;
 }
