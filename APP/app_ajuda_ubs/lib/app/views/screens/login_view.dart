@@ -30,13 +30,15 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    bool senhaVisivel = false;
+
     return Scaffold(
         body: SingleChildScrollView(
             child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -48,31 +50,41 @@ class _LoginViewState extends State<LoginView> {
                             fontSize: 24),
                       ),
                       const SizedBox(height: 15),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: ComponentsUtils.TextFieldEdit(
-                              context,
-                              1,
-                              'Email ou  CNS',
-                              TextInputType.emailAddress,
-                              const Icon(Icons.login),
-                              () {},
-                              controllerLogin,
-                              (cepp) {},
-                              true)),
+                      ComponentsUtils.TextFieldEdit(
+                          context,
+                          1,
+                          'Email ou  CNS',
+                          TextInputType.emailAddress,
+                          const Icon(Icons.login),
+                          () {},
+                          controllerLogin,
+                          (cepp) {},
+                          true),
                       const SizedBox(height: 15),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: ComponentsUtils.TextFieldEdit(
-                              context,
-                              1,
-                              'Senha',
-                              TextInputType.visiblePassword,
-                              const Icon(Icons.password),
-                              () {},
-                              controllerSenha,
-                              (cepp) {},
-                              true)),
+                      TextField(
+                        obscureText: senhaVisivel,
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: controllerSenha,
+                        decoration: InputDecoration(
+                          suffixIcon: GestureDetector(
+                              child: (senhaVisivel == true)
+                                  ? const Icon(Icons.visibility_off)
+                                  : const Icon(Icons.visibility),
+                              onTap: () {
+                                setState(() {
+                                  senhaVisivel = !senhaVisivel;
+                                });
+                              }),
+                          label: const Text(
+                            'Senha',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 20),
                       Row(
                           mainAxisSize: MainAxisSize.max,

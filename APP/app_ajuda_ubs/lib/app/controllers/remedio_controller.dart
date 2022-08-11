@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ajuda_ubs/app/models/ubs_model.dart';
-import 'package:ajuda_ubs/app/views/screens/remedio_maps_view.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,26 +26,29 @@ class RemedioController extends ChangeNotifier {
     loadPostos();
   }
 
+  late List<double> distancia = [];
+
   loadPostos() async {
     try {
       var response = await http.get(Uri.parse('http://localhost:5000/ubs'));
       if (response.statusCode == 200) {
         ubs = UBS.fromJsons(response.body);
-        ubs.forEach((ubs) async {
+        ubs.forEach((ubs) {
+          double dist = Geolocator.distanceBetween(
+              lat, long, ubs.latitude, ubs.longitude);
+          distancia.add(dist);
           markers.add(
             Marker(
               markerId: MarkerId(ubs.nome),
               position: LatLng(ubs.latitude, ubs.longitude),
-              icon: await BitmapDescriptor.fromAssetImage(
-                const ImageConfiguration(),
-                'assets/imagens/rem-ok.png',
-              ),
+              icon: BitmapDescriptor.defaultMarkerWithHue(
+                  BitmapDescriptor.hueBlue),
               onTap: () => {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) => Wrap(
                     children: [
-                      Image.asset('assets/imagens/ubs.png',
+                      Image.network(ubs.endereco,
                           height: 250,
                           width: MediaQuery.of(context).size.width,
                           fit: BoxFit.cover),
@@ -89,10 +91,8 @@ class RemedioController extends ChangeNotifier {
       markers.add(Marker(
           markerId: MarkerId('ResidenciaLocal'),
           position: LatLng(lat, long),
-          icon: await BitmapDescriptor.  fromAssetImage(
-            const ImageConfiguration(),
-            'assets/imagens/pin_home.png',
-          )));
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
       _mapsController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
     } catch (e) {
       erro = e.toString();

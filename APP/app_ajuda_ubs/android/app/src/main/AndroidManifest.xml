@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_ajuda_aubs">
+    package="com.example.app_ajuda_ubs">
    <application
-        android:label="app_ajuda_aubs"
+        android:label="app_ajuda_ubs"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
