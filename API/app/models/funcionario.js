@@ -5,9 +5,9 @@ class Funcionario {
     // Requisões: LOGIN
     static getFuncionario(app, sql) {
         app.get("/funcionario/:id", (req, res, next) => {
-            var cnsFuncionario = req.params.id;
+            var cpfFuncionario = req.params.id;
             console.log(cnsFuncionario);
-            var query = "SELECT * FROM Funcionario WHERE cns =" + "'" + cnsFuncionario + "' or email =" + "'" + cnsFuncionario + "'";
+            var query = "SELECT * FROM Funcionario WHERE cpf =" + "'" + cpfFuncionario + "'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -39,7 +39,8 @@ class Funcionario {
     static postFuncionario(app, sql) {
         app.post("/funcionario", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Funcionario (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('" + user.cns + "','" + user.dataNascimento + "','" + user.nome + "','" + user.endereco + "','" + user.senha + "','" + user.telefone + "','" + user.email + "','" + user.idUbs + "');";
+            var query = "INSERT INTO Funcionario (cpf, crm, cargo, nome, idUbs) VALUES('" + user.cpf + "','"
+                + user.crm + "','" + user.cargo + "','" + user.nome + "','" + user.idUbs + "');";
             console.log(user);
             console.log(query);
 
@@ -47,7 +48,7 @@ class Funcionario {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Funcionario WHERE cns = '" + req.body.cns + "'"
+                var query2 = "SELECT * FROM Funcionario WHERE crm = '" + req.body.cpf + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r[0]);
