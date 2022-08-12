@@ -14,10 +14,6 @@ class RemedioMapsView extends StatefulWidget {
 class _RemedioMapsViewState extends State<RemedioMapsView> {
   late GoogleMapController mapController;
 
-  final LatLng center = const LatLng(-22.9106045, -47.0689968);
-
-  final appKey = GlobalKey();
-
   @override
   void initState() {
     //distance();
@@ -50,20 +46,16 @@ class _RemedioMapsViewState extends State<RemedioMapsView> {
               onMapCreated: local.onMapCreated,
               markers: local.markers,
             ),
-            (local.ubs != null) ? Positioned(
-                bottom: 20.0,
-                child: SizedBox(
-                    height: 225,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: local.ubs!.length,
-                        itemBuilder: (context, index) {
-                          final ubs = local.ubs!.elementAt(index);
-                          return Text(ubs!.nome);
-                        }))) : Container() ,
           ]);
         }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Colors.black,
+        onPressed: () {
+          local.getLocalHome();
+        },
+        child: const Icon(Icons.center_focus_strong),
       ),
     );
   }

@@ -13,6 +13,10 @@ class RemedioController extends ChangeNotifier {
   late GoogleMapController _mapsController;
   late List<UBS> ubs;
   BuildContext context;
+  late var _initialCameraPosition = CameraPosition(
+    target: LatLng(lat, long),
+    zoom: 16.5,
+  );
 
   RemedioController({required this.context}) {
     getPosicao();
@@ -26,36 +30,103 @@ class RemedioController extends ChangeNotifier {
     loadPostos();
   }
 
-  late List<double> distancia = [];
+  late List<UbsDistancia> rankingDistancia = [];
+
+  Widget listaDistanciaUBS() {
+    return SizedBox(
+        height: 120,
+        width: MediaQuery.of(context).size.width,
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: rankingDistancia.length,
+            itemBuilder: (context, index) {
+              UbsDistancia file = rankingDistancia[index];
+              return InkWell(
+                  onTap: () => _mapsController.animateCamera(
+                          CameraUpdate.newCameraPosition(CameraPosition(
+                        target: LatLng(file.ubs.latitude, file.ubs.longitude),
+                        zoom: 16.5,
+                      ))),
+                  child: ListTile(
+                    //leading: Text('$index'),
+                    title: Text(
+                      file.ubs.nome,
+                      textAlign: TextAlign.start,
+                    ),
+                    subtitle: Text(
+                      file.ubs.endereco,
+                      textAlign: TextAlign.start,
+                    ),
+                    trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                              '${(file.distancia / 1000).toStringAsFixed(2)} km'),
+                          const SizedBox(height: 10),
+                          (file.ubs.telefone != null)
+                              ? const Text(
+                                  'DISPONÍVEL',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.green),
+                                )
+                              : const Text(
+                                  'INDISPONÍVEL',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.red),
+                                )
+                        ]),
+                  ));
+            }));
+  }
 
   loadPostos() async {
     try {
-      var response = await http.get(Uri.parse('http://localhost:5000/ubs'));
-      if (response.statusCode == 200) {
-        ubs = UBS.fromJsons(response.body);
+      var responseUbs = await http.get(Uri.parse('http://localhost:3000/ubs'));
+
+      if (responseUbs.statusCode == 200) {
+        ubs = UBS.fromJsons(responseUbs.body);
+        /*var responseRemedio = await http.get(Uri.parse('http://localhost:3000/remedioUbs/${ubs.indexOf(perfil.ubs)}/$remedio'));
+
+
+      if (responseRemedio.statusCode == 200) {
+                remedioUbs = RemedioUbs.fromJsons(responseRemedio.body);            
+
+          if(remedioUbs.qtd > 0){
+
+            ubs.forEach
+          }
+        }*/
+
         ubs.forEach((ubs) {
           double dist = Geolocator.distanceBetween(
               lat, long, ubs.latitude, ubs.longitude);
-          distancia.add(dist);
+          rankingDistancia.add(UbsDistancia(ubs, dist));
           markers.add(
             Marker(
               markerId: MarkerId(ubs.nome),
+              infoWindow: InfoWindow(
+                  anchor: const Offset(0.0, 0.0),
+                  title: ubs.nome,
+                  snippet: ubs.endereco),
               position: LatLng(ubs.latitude, ubs.longitude),
-              icon: BitmapDescriptor.defaultMarkerWithHue(
-                  BitmapDescriptor.hueBlue),
+              icon: BitmapDescriptor.defaultMarkerWithHue(210),
               onTap: () => {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) => Wrap(
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
                     children: [
-                      Image.network(ubs.endereco,
+                      Image.network(ubs.fotoUrl,
                           height: 250,
                           width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.cover),
+                          fit: BoxFit
+                              .cover), /*
                       Padding(
                         padding: const EdgeInsets.only(top: 24, left: 24),
                         child: Text(
                           ubs.nome,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.w600,
@@ -63,11 +134,12 @@ class RemedioController extends ChangeNotifier {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 60, left: 24),
+                        padding: const EdgeInsets.only(bottom: 24, left: 24),
                         child: Text(
                           ubs.endereco,
+                          textAlign: TextAlign.center,
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 )
@@ -75,13 +147,15 @@ class RemedioController extends ChangeNotifier {
             ),
           );
         });
+        
+        rankingDistancia.sort((a, b) => a.distancia < b.distancia ? -1 : 1);
+
         notifyListeners();
       }
     } catch (e) {
       print(e.toString());
     }
-  } /*
-  */
+  }
 
   getPosicao() async {
     try {
@@ -89,10 +163,10 @@ class RemedioController extends ChangeNotifier {
       lat = posicao.latitude;
       long = posicao.longitude;
       markers.add(Marker(
-          markerId: MarkerId('ResidenciaLocal'),
+          markerId: const MarkerId('ResidenciaLocal'),
           position: LatLng(lat, long),
-          icon:
-              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue)));
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueAzure)));
       _mapsController.animateCamera(CameraUpdate.newLatLng(LatLng(lat, long)));
     } catch (e) {
       erro = e.toString();
@@ -122,4 +196,19 @@ class RemedioController extends ChangeNotifier {
 
     return await Geolocator.getCurrentPosition();
   }
+
+  void getLocalHome() {
+    _mapsController
+        .animateCamera(CameraUpdate.newCameraPosition(_initialCameraPosition));
+  }
+}
+
+class UbsDistancia {
+  final UBS ubs;
+  final double distancia;
+
+  UbsDistancia(
+    this.ubs,
+    this.distancia,
+  );
 }
