@@ -7,6 +7,7 @@ const app = express();
 const sql = require("./app/models/db.js");
 
 const Paciente = require("./app/models/paciente.js");
+const Funcionario = require("./app/models/funcionario.js");
 const Endereco = require("./app/models/endereco.js");
 const Ubs = require("./app/models/ubs.js");
 
@@ -34,8 +35,7 @@ Paciente.getPaciente(app, sql);
 Paciente.getAllPaciente(app, sql);
 Paciente.postPaciente(app, sql);
 
-
-// Requisições PACIENTE
+// Requisições Endereço
 Endereco.getEndereco(app, sql);
 Endereco.getAllEndereco(app, sql);
 Endereco.postEndereco(app, sql);
@@ -44,7 +44,10 @@ Endereco.postEndereco(app, sql);
 Ubs.getUbs(app, sql);
 Ubs.getAllUbs(app, sql);
 
-
+//Requisições Funcionario
+Paciente.getFuncionario(app, sql);
+Paciente.getAllFuncionario(app, sql);
+Paciente.postFuncionario(app, sql);
 require("./app/routes/tutorial.routes.js")(app);
 
 
