@@ -37,6 +37,7 @@ class _NavigationViewState extends State<NavigationView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: PageView(
+          physics: NeverScrollableScrollPhysics(),
           onPageChanged: onTapped,
           controller: pageController,
           children: const [
