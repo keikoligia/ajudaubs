@@ -31,9 +31,9 @@ app.get("/", (req, res) => {
 //const api_ob = new UserApiClass(http);
 
 // Requisições PACIENTE
-Paciente.getPaciente(app, sql);
-Paciente.getAllPaciente(app, sql);
-Paciente.postPaciente(app, sql);
+//Paciente.getPaciente(app, sql);
+//Paciente.getAllPaciente(app, sql);
+//Paciente.postPaciente(app, sql);
 
 // Requisições Endereço
 Endereco.getEndereco(app, sql);
@@ -45,9 +45,9 @@ Ubs.getUbs(app, sql);
 Ubs.getAllUbs(app, sql);
 
 //Requisições Funcionario
-Paciente.getFuncionario(app, sql);
-Paciente.getAllFuncionario(app, sql);
-Paciente.postFuncionario(app, sql);
+Funcionario.getFuncionario(app, sql);
+Funcionario.getAllFuncionario(app, sql);
+Funcionario.postFuncionario(app, sql);
 require("./app/routes/tutorial.routes.js")(app);
 
 
