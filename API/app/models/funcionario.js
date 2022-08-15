@@ -12,8 +12,8 @@ class Funcionario {
 
             sql.query(query, (err, result,) => {
                 if (result && result.length) {
-                    console.log(result[0]);
-                    return res.status(200).json(result[0]);
+                    console.log(result);
+                    return res.status(200).json(result);
                 }
                 else {
                     return res.status(404).json({ error: 'Funcionario nao encontrado' });
@@ -22,7 +22,7 @@ class Funcionario {
         });
     }
     static getAllFuncionario(app, sql) {
-        app.get("/funcionario", (req, res, next) => {
+        app.get("/funcionarios", (req, res, next) => {
             console.log("chegou 1");
             sql.query("select * from funcionario", (err, result,) => {
                 if (result && result.length) {
@@ -51,8 +51,8 @@ class Funcionario {
                 var query2 = "SELECT * FROM Funcionario WHERE crm = '" + req.body.cpf + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
-                    console.log("final " + r[0]);
-                    return res.status(200).json(r[0]);
+                    console.log("final " + r);
+                    return res.status(200).json(r);
                 })
             });
         });

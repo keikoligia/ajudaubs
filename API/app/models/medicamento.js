@@ -9,8 +9,8 @@ class Remedio {
 
             sql.query(query, (err, result,) => {
                 if (result && result.length) {
-                    console.log(result[0]);
-                    return res.status(200).json(result[0]);
+                    console.log(result);
+                    return res.status(200).json(result);
                 }
                 else {
                     return res.status(404).json({ error: 'Remedio nao encontrado' });
@@ -49,8 +49,8 @@ class Remedio {
                 var query2 = "SELECT * FROM Remedio WHERE idRemedio = '" + req.body.idRemedio + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
-                    console.log("final " + r[0]);
-                    return res.status(200).json(r[0]);
+                    console.log("final " + r);
+                    return res.status(200).json(r);
                 })
             });
         });
