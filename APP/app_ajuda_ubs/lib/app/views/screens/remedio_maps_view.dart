@@ -45,6 +45,7 @@ class _RemedioMapsViewState extends State<RemedioMapsView> {
               myLocationEnabled: true,
               onMapCreated: local.onMapCreated,
               markers: local.markers,
+              circles: Set<Circle>.from(local.circles)
             ),
           ]);
         }),
