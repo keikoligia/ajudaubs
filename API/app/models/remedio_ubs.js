@@ -1,12 +1,11 @@
 
-class Funcionario {
-
+class Remedio_Ubs {
     // Requisões: LOGIN
-    static getFuncionario(app, sql) {
-        app.get("/funcionario/:id", (req, res, next) => {
-            var cpfFuncionario = req.params.id;
-            console.log(cpfFuncionario);
-            var query = "SELECT * FROM Funcionario WHERE cpf =" + "'" + cpfFuncionario + "'";
+    static getRemedio_Ubs(app, sql) {
+        app.get("/remedioubs/:id", (req, res, next) => {
+            var idRemedioUbs = req.params.id;
+            console.log(idRemedioUbs);
+            var query = "SELECT * FROM RemedioUbs WHERE idRemedioUbs =" + "'" + idRemedioUbs + "'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -15,31 +14,31 @@ class Funcionario {
                     return res.status(200).json(result);
                 }
                 else {
-                    return res.status(404).json({ error: 'Funcionario nao encontrado' });
+                    return res.status(404).json({ error: 'RemedioUbs nao encontrado' });
                 }
             });
         });
     }
-    static getAllFuncionario(app, sql) {
-        app.get("/funcionarios", (req, res, next) => {
+    static getAllRemedio_Ubs(app, sql) {
+        app.get("/remediosubs", (req, res, next) => {
             console.log("chegou 1");
-            sql.query("select * from funcionario", (err, result,) => {
+            sql.query("select * from RemedioUbs", (err, result,) => {
                 if (result && result.length) {
                     console.log(result);
                     return res.status(200).json(result);
                 }
                 else {
-                    return res.status(404).json({ error: 'Funcionario nao encontrado' });
+                    return res.status(404).json({ error: 'Remedio_Ubs nao encontrado' });
                 }
             });
         });
     }
 
-    static postFuncionario(app, sql) {
-        app.post("/funcionario", (req, res, next) => {
+    static postRemedio_Ubs(app, sql) {
+        app.post("/remedioubs", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Funcionario (cpf, crm, cargo, nome, idUbs) VALUES('" + user.cpf + "','"
-                + user.crm + "','" + user.cargo + "','" + user.nome + "','" + user.idUbs + "');";
+            var query = "INSERT INTO RemedioUbs (idRemedioUbs, idRemedio, idUbs, quantidade, dataValidade, dataLote) VALUES('" + user.idRemedioUbs + "','"
+                + user.idRemedio + "','" + user.idUbs + "','" + user.quantidade + "','" + user.dataValidade + "','" + user.dataLote + "');";
             console.log(user);
             console.log(query);
 
@@ -47,7 +46,7 @@ class Funcionario {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Funcionario WHERE crm = '" + req.body.cpf + "'"
+                var query2 = "SELECT * FROM RemedioUbs WHERE idRemedioUbs = '" + req.body.idRemedioUbs + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r);
@@ -58,6 +57,4 @@ class Funcionario {
     }
 }
 
-
-
-module.exports = Funcionario;
+module.exports = Remedio_Ubs;
