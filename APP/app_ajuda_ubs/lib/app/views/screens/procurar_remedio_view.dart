@@ -72,21 +72,29 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
                                       fontSize: 30),
                                 ),
                                 const SizedBox(height: 20),
-                                ComponentsUtils.TextFieldEdit(
+                                ComponentsUtils.CardSuport(
                                     context,
-                                    1,
-                                    'Nome do Remédio',
-                                    TextInputType.text,
-                                    const Icon(Icons.search),
-                                    () {
-                                      setState(() {});
-                                    },
-                                    controllerEmail,
-                                    (function) {
-                                      email = function;
-                                      setState(() {});
-                                    },
-                                    true),
+                                    'Pesquisa',
+                                    'Por favor, digite pelo menos 3 letras do nome genérico do medicamento.',
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: ComponentsUtils.TextFieldEdit(
+                                            context,
+                                            1,
+                                            '',
+                                            TextInputType.text,
+                                            const Icon(Icons.search),
+                                            () {
+                                              setState(() {});
+                                            },
+                                            controllerEmail,
+                                            (function) {
+                                              email = function;
+                                              setState(() {});
+                                            },
+                                            true)),
+                                    Icons.healing),
                                 (controllerEmail.text.isEmpty)
                                     ? Container(
                                         height: 0,
@@ -96,7 +104,12 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
                                     ? Container(
                                         height: 0,
                                       )
-                                    : local.listaDistanciaUBS(),
+                                    : ComponentsUtils.CardSuport(
+                                        context,
+                                        'Unidades Básicas de Saúde',
+                                        'Lista das UBSs que contém o medicamento pesquisado',
+                                        local.listaDistanciaUBS(),
+                                        Icons.list),
                                 const SizedBox(height: 10),
                                 (controllerEmail.text.isEmpty)
                                     ? SizedBox(
@@ -114,14 +127,20 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
                                                 2,
                                         child: Container(
                                             decoration: BoxDecoration(
-                                              // color: const Color(0xff7c94b6),
-                                              border: Border.all(
-                                                color: const Color.fromRGBO(
-                                                    138, 162, 212, 1),
-                                                width: 3,
-                                              ),
+                                              color: const Color.fromARGB(
+                                                  255, 182, 182, 182),
                                               borderRadius:
-                                                  BorderRadius.circular(5),
+                                                  BorderRadius.circular(12),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.3),
+                                                  spreadRadius: 3,
+                                                  blurRadius: 5,
+                                                  offset: const Offset(0,
+                                                      3), // changes position of shadow
+                                                ),
+                                              ],
                                             ),
                                             child: maps)),
                                 (controllerEmail.text.isEmpty)
@@ -148,6 +167,7 @@ class _ProcurarRemedioViewState extends State<ProcurarRemedioView> {
                                     : Container(),
                               ]))));
             })),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: (controllerEmail.text.isEmpty)
             ? null
             : FloatingActionButton(

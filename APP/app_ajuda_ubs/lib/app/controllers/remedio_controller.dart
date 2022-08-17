@@ -37,14 +37,6 @@ class RemedioController extends ChangeNotifier {
 
   Widget listaDistanciaUBS() {
     return Container(
-        decoration: BoxDecoration(
-         // color: const Color(0xff7c94b6),          
-          border: Border.all(
-            color:const Color.fromRGBO(138, 162, 212, 1),
-            width: 3,
-          ),
-          borderRadius: BorderRadius.circular(5),
-        ),
         height: 120,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(

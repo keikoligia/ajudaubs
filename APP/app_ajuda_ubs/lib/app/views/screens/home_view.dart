@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ajuda_ubs/app/utils/user_preferences.dart';
 import 'package:flutter/material.dart';
 //import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -11,6 +13,40 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   var user = UserPreferences.myUser;
+
+  int paginaAtual = 0;
+  late Timer timer;
+
+  late PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(initialPage: paginaAtual);
+
+    timer = Timer.periodic(const Duration(milliseconds: 3000), (Timer timer) {
+      if (paginaAtual < 5) {
+        paginaAtual++;
+      } else {
+        paginaAtual = 0;
+      }
+      pageController.jumpToPage(paginaAtual);
+    });
+  }
+
+  void onTapped(int index) {
+    setState(() {
+      paginaAtual = index;
+    });
+    pageController.jumpToPage(index);
+    // Navigator.of(context) .pushReplacementNamed("/desafio");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +112,34 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ]),
                       SizedBox(
+                          height: MediaQuery.of(context).size.height / 2,
+                          child: PageView(
+                            onPageChanged: onTapped,
+                            controller: pageController,
+                            children: [
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_denuncias.png')),
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_remedios.png')),
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_ubs.png')),
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_consultas.png')),
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_dados.png')),
+                              SizedBox(
+                                  child: Image.asset(
+                                      'assets/imagens/fig_exames.png')),
+                            ],
+                          )),
+                      const SizedBox(height: 15),
+                      /*
+                      SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 200,
                           child:
@@ -90,7 +154,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                         width: 300,
                         height: 200,
-                      ),
+                      ),*/
                     ],
                   ),
                 ))));
