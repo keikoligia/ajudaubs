@@ -1,13 +1,12 @@
 
-class Paciente {
-
-
-    // Requisões: LOGIN
-    static getPaciente(app, sql) {
-        app.get("/paciente/:id", (req, res, next) => {
-            var cnsPaciente = req.params.id;
-            console.log(cnsPaciente);
-            var query = "SELECT * FROM Paciente WHERE cns =" + "'" + cnsPaciente + "' or email =" + "'" + cnsPaciente + "'";
+class Relatorio {
+    //get quantidade da tabela remedioubs
+    static getRelatorio(app, sql) {
+        app.get("/relatorio", (req, res, next) => {
+            var dados = req.params.id;
+            var query = "select year(dataLote),month(dataLote),sum(quantidade) from RemedioUbs "
+                + "group by year(dataLote),month(dataLote) "
+                + "order by year(dataLote),month(dataLote);";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -16,14 +15,14 @@ class Paciente {
                     return res.status(200).json(result);
                 }
                 else {
-                    return res.status(404).json({ error: 'Paciente nao encontrado' });
+                    return res.status(404).json({ error: 'Impossivel montar relatorio' });
                 }
             });
         });
     }
-
-    static getAllPaciente(app, sql) {
-        app.get("/paciente", (req, res, next) => {
+    //e agora?
+    static getAllRelatorio(app, sql) {
+        app.get("/relatorio", (req, res, next) => {
             console.log("chegou 1");
             sql.query("select * from paciente", (err, result,) => {
                 if (result && result.length) {
@@ -31,16 +30,17 @@ class Paciente {
                     return res.status(200).json(result);
                 }
                 else {
-                    return res.status(404).json({ error: 'Paciente nao encontrado' });
+                    return res.status(404).json({ error: 'Relatorio nao encontrado' });
                 }
             });
         });
     }
 
-    static postPaciente(app, sql) {
-        app.post("/paciente", (req, res, next) => {
+    static postRelatorio(app, sql) {
+        app.post("/relatorio", (req, res, next) => {
+            n
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Paciente (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('"
+            var query = "INSERT INTO Relatorio (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('"
                 + user.cns + "','" + user.dataNascimento + "','" + user.nome + "','" + user.endereco + "','"
                 + user.senha + "','" + user.telefone + "','" + user.email + "','" + user.idUbs + "');";
             console.log(user);
@@ -50,7 +50,7 @@ class Paciente {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Paciente WHERE cns = '" + req.body.cns + "'"
+                var query2 = "SELECT * FROM Relatorio WHERE cns = '" + req.body.cns + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r);
@@ -63,4 +63,4 @@ class Paciente {
 
 
 
-module.exports = Paciente;
+module.exports = Relatorio;

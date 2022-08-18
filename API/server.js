@@ -12,6 +12,7 @@ const Endereco = require("./app/models/endereco.js");
 const Ubs = require("./app/models/ubs.js");
 const RemedioUbs = require("./app/models/remedio_ubs.js");
 const Remedio = require("./app/models/remedio.js");
+const Relatorio = require("./app/models/relatorio.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -61,6 +62,9 @@ Remedio.postRemedio(app, sql);
 RemedioUbs.getAllRemedio_Ubs(app, sql);
 RemedioUbs.getRemedio_Ubs(app, sql);
 RemedioUbs.postRemedio_Ubs(app, sql);
+
+//Requisicoes Relatorio
+Relatorio.getRelatorio(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 

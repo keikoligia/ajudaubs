@@ -21,7 +21,7 @@ class Funcionario {
         });
     }
     static getAllFuncionario(app, sql) {
-        app.get("/funcionarios", (req, res, next) => {
+        app.get("/funcionario", (req, res, next) => {
             console.log("chegou 1");
             sql.query("select * from funcionario", (err, result,) => {
                 if (result && result.length) {
@@ -38,8 +38,8 @@ class Funcionario {
     static postFuncionario(app, sql) {
         app.post("/funcionario", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Funcionario (cpf, crm, cargo, nome, idUbs) VALUES('" + user.cpf + "','"
-                + user.crm + "','" + user.cargo + "','" + user.nome + "','" + user.idUbs + "');";
+            console.log(user)
+            var query = "INSERT INTO Funcionario (cpf, crm, cargo, nome, idUbs) VALUES('" + user.cpf + "','" + user.crm + "','" + user.cargo + "','" + user.nome + "','" + user.idUbs + "');";
             console.log(user);
             console.log(query);
 
@@ -47,7 +47,7 @@ class Funcionario {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Funcionario WHERE crm = '" + req.body.cpf + "'"
+                var query2 = "SELECT * FROM Funcionario WHERE cpf = '" + req.body.cpf + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r);
