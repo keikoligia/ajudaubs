@@ -2,11 +2,13 @@
 class Relatorio {
     //get quantidade da tabela remedioubs
     static getRelatorio(app, sql) {
-        app.get("/relatorio", (req, res, next) => {
-            var dados = req.params.id;
-            var query = "select year(dataLote),month(dataLote),sum(quantidade) from RemedioUbs "
-                + "group by year(dataLote),month(dataLote) "
-                + "order by year(dataLote),month(dataLote);";
+        app.get("/relatorio/:ano", (req, res, next) => {
+            var ano = req.params.ano;
+            console.log(ano);
+            var query = "select SUBSTRING(dataManifestacao , 4, 2)," +
+                " count(tipo) from manifestacao where" +
+                " SUBSTRING(dataManifestacao , 7, 4) = " + "'" + ano + "'" +
+                " group by SUBSTRING(dataManifestacao , 4, 2)";
             console.log(query);
 
             sql.query(query, (err, result,) => {
