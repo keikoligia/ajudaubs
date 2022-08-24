@@ -7,8 +7,12 @@ const app = express();
 const sql = require("./app/models/db.js");
 
 const Paciente = require("./app/models/paciente.js");
+const Funcionario = require("./app/models/funcionario.js");
 const Endereco = require("./app/models/endereco.js");
 const Ubs = require("./app/models/ubs.js");
+const RemedioUbs = require("./app/models/remedio_ubs.js");
+const Remedio = require("./app/models/remedio.js");
+const Relatorio = require("./app/models/relatorio.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -34,8 +38,7 @@ Paciente.getPaciente(app, sql);
 Paciente.getAllPaciente(app, sql);
 Paciente.postPaciente(app, sql);
 
-
-// Requisições PACIENTE
+// Requisições Endereço
 Endereco.getEndereco(app, sql);
 Endereco.getAllEndereco(app, sql);
 Endereco.postEndereco(app, sql);
@@ -43,10 +46,27 @@ Endereco.postEndereco(app, sql);
 // Requisições UBS
 Ubs.getUbs(app, sql);
 Ubs.getAllUbs(app, sql);
+Ubs.postUbs(app, sql);
 
+//Requisições Funcionario
+Funcionario.getFuncionario(app, sql);
+Funcionario.getAllFuncionario(app, sql);
+Funcionario.postFuncionario(app, sql);
+
+//Requisições Remedio
+Remedio.getAllRemedio(app, sql);
+Remedio.getRemedio(app, sql);
+Remedio.postRemedio(app, sql);
+
+//Requisições RemedioUbs
+RemedioUbs.getAllRemedio_Ubs(app, sql);
+RemedioUbs.getRemedio_Ubs(app, sql);
+RemedioUbs.postRemedio_Ubs(app, sql);
+
+//Requisicoes Relatorio
+Relatorio.getRelatorio(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
-
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

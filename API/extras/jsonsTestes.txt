@@ -18,3 +18,22 @@
         "municipio": "Campinas",
         "estado": "SP"
     }
+
+    {
+        "cpf": "00000000004",
+        "crm": "",
+        "cargo": "Radiologista",
+        "nome": "Michael Doug",
+        "idUbs": "1234"
+    }
+
+    {
+        "cns": "000000000000004",
+        "dataNascimento": "2004-05-18T03:00:00.000Z",
+        "nome": "José Onofre",
+        "endereco": "Rua das Graminhas",
+        "senha": "s123",
+        "telefone": "19981086754",
+        "email": "jojo@gmail.com",
+        "idUbs": "00000000001"
+    }

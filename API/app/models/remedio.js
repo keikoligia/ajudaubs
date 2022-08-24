@@ -2,8 +2,8 @@
 class Remedio {
     static getRemedio(app, sql) {
         app.get("/remedio/:id", (req, res, next) => {
-            var cnsRemedio = req.params.id;
-            console.log(cnsRemedio);
+            var idRemedio = req.params.id;
+            console.log(idRemedio);
             var query = "SELECT * FROM Remedio WHERE idRemedio =" + "'" + idRemedio + "'";
             console.log(query);
 
