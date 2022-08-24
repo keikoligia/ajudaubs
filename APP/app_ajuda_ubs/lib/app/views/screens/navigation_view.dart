@@ -1,8 +1,6 @@
 import 'package:ajuda_ubs/app/views/manifestacao/form_man1_view.dart';
-import 'package:ajuda_ubs/app/views/screens/map_view.dart';
-import 'package:ajuda_ubs/app/views/screens/maps_viw.dart';
+import 'package:ajuda_ubs/app/views/screens/historico_view.dart';
 import 'package:ajuda_ubs/app/views/screens/perfil_view.dart';
-import 'package:ajuda_ubs/app/views/screens/remedio_maps_view.dart';
 import 'package:flutter/material.dart';
 import 'home_view.dart';
 import 'procurar_remedio_view.dart';
@@ -44,8 +42,8 @@ class _NavigationViewState extends State<NavigationView> {
             HomeView(),
             ProcurarRemedioView(),
             FormMan1View(),
-            RemedioMapsView(),
-            MapsView(),
+            HistoricoView(),
+            PerfilView(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

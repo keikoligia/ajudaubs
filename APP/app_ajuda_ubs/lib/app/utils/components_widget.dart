@@ -97,6 +97,52 @@ class ComponentsUtils {
     );
   }
 
+  static Widget CardSuport(BuildContext context, String title, String subtitle,
+      Widget widget, IconData icone) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 182, 182, 182),
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
+      child: ExpansionTileCard(
+          leading: Icon(icone,
+              size: 50, color: const Color.fromARGB(255, 138, 161, 212)),
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                color: Color.fromARGB(255, 138, 161, 212),
+//  color: Color.fromARGB(255, 255, 0, 0),
+                fontWeight: FontWeight.bold,
+                fontSize: 24),
+          ),
+          subtitle: Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                color: Color.fromARGB(255, 138, 161, 212),
+//  color: Color.fromARGB(255, 255, 0, 0),
+                fontWeight: FontWeight.bold,
+                fontSize: 15),
+          ),
+          //subtitle: Text('I expand!'),
+          children: <Widget>[
+            Align(alignment: Alignment.centerLeft, child: widget),
+            const SizedBox(
+              height: 20,
+            ),
+          ]),
+    );
+  }
+
   // ignore: non_constant_identifier_names
   static Future<void> Mensagem(
       bool erro, String sim, String nao, BuildContext context) async {

@@ -69,6 +69,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                 Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                /*
                 SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     child: PageView(
@@ -92,7 +93,10 @@ class _WelcomeViewState extends State<WelcomeView> {
                             child:
                                 Image.asset('assets/imagens/fig_exames.png')),
                       ],
-                    )),
+                    )),*/
+                SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: Image.asset('assets/imagens/fig_exames.png')),
                 const SizedBox(height: 15),
                 SizedBox(
                     height: 40,
