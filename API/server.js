@@ -65,6 +65,7 @@ RemedioUbs.postRemedio_Ubs(app, sql);
 
 //Requisicoes Relatorio
 Relatorio.getRelatorio(app, sql);
+Relatorio.getAllRelatorio(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
