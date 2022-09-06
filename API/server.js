@@ -13,6 +13,7 @@ const Ubs = require("./app/models/ubs.js");
 const RemedioUbs = require("./app/models/remedio_ubs.js");
 const Remedio = require("./app/models/remedio.js");
 const Relatorio = require("./app/models/relatorio.js");
+const Manifestacao = require("./app/models/manifestacao.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -30,8 +31,6 @@ app.use(express.urlencoded({ extended: true })); /* bodyParser.urlencoded() is d
 app.get("/", (req, res) => {
   res.json({ message: "Bem vindo ao AjudaUBS." });
 });
-
-//const api_ob = new UserApiClass(http);
 
 // Requisições PACIENTE
 Paciente.getPaciente(app, sql);
@@ -64,8 +63,13 @@ RemedioUbs.getRemedio_Ubs(app, sql);
 RemedioUbs.postRemedio_Ubs(app, sql);
 
 //Requisicoes Relatorio
-Relatorio.getRelatorio(app, sql);
-Relatorio.getAllRelatorio(app, sql);
+Relatorio.getRelatorioManifestacao(app, sql);
+Relatorio.getAllRelatorioManifestacao(app, sql);
+Relatorio.getRankUbs(app, sql);
+
+Manifestacao.getManifestacao(app, sql);
+Manifestacao.getAllManifestacoes(app, sql);
+Manifestacao.postManifestacao(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
