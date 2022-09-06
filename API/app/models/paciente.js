@@ -1,8 +1,5 @@
 
 class Paciente {
-
-
-    // Requisões: LOGIN
     static getPaciente(app, sql) {
         app.get("/paciente/:id", (req, res, next) => {
             var cnsPaciente = req.params.id;

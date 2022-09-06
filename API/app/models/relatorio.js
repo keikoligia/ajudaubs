@@ -27,7 +27,7 @@ class Relatorio {
     static getAllRelatorioManifestacao(app, sql) {
         app.get("/relatorio", (req, res, next) => {
             var query = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', tipo," +
-                " count(tipo) as 'qtd manifestacao' from manifestacao" +
+                " count(tipo) as 'qtd manifestacao' from manifestacao," +
                 " group by SUBSTRING(dataManifestacao , 4, 2), tipo";
             console.log(query);
             sql.query(query, (err, result,) => {
@@ -37,6 +37,25 @@ class Relatorio {
                 }
                 else {
                     return res.status(404).json({ error: 'Relatorio nao encontrado' });
+                }
+            });
+        });
+    }
+
+    //get qtd de manifestação  pipa pips pipa pips pips pips pip pip pip  pip pip pip pip pip pip
+    static getQtdManifestacoes(app, sql) {
+        app.get("/qtdmanifestacoes", (req, res, next) => {
+            var query = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', " +
+                "count(tipo) as 'qtd manifestacao' from manifestacao, " +
+                "group by SUBSTRING(dataManifestacao , 4, 2)";
+            console.log(query);
+            sql.query(query, (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Quantidade nao encontrada' });
                 }
             });
         });

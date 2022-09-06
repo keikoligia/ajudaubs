@@ -66,6 +66,7 @@ RemedioUbs.postRemedio_Ubs(app, sql);
 Relatorio.getRelatorioManifestacao(app, sql);
 Relatorio.getAllRelatorioManifestacao(app, sql);
 Relatorio.getRankUbs(app, sql);
+Relatorio.getQtdManifestacoes(app, sql);
 
 Manifestacao.getManifestacao(app, sql);
 Manifestacao.getAllManifestacoes(app, sql);

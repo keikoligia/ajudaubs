@@ -1,6 +1,5 @@
 
 class Manifestacao {
-    // Requisões: LOGIN
     static getManifestacao(app, sql) {
         app.get("/manifestacao/:id", (req, res, next) => {
             var protocolo = req.params.id;
@@ -36,11 +35,12 @@ class Manifestacao {
 
     static postManifestacao(app, sql) {
         app.post("/manifestacao", (req, res, next) => {
-            console.log("entrou post");
             var user = req.body; // pega as informacoes da requisicao
             var x = user.imagem3
             console.log(x)
-            var query = "INSERT INTO manifestacao VALUES ('" + user.protocolo + "','" + user.idUbs + "','" + user.idPaciente + "','" + user.tipo + "','" + user.status + "'," + user.imagem1 + "," + user.imagem2 + "," + user.imagem3 + ",'" + user.descricao + "','" + user.dataManifestacao + "');";
+            var query = "INSERT INTO manifestacao VALUES ('" + user.protocolo + "','" + user.idUbs + "','" + user.idPaciente
+                + "','" + user.tipo + "','" + user.status + "'," + user.imagem1 + "," + user.imagem2 + "," + user.imagem3
+                + ",'" + user.descricao + "','" + user.dataManifestacao + "');";
             console.log(user);
             console.log(query);
 
