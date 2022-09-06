@@ -1,14 +1,14 @@
 
 class Relatorio {
     //get quantidade da tabela remedioubs
-    static getRelatorio(app, sql) {
+    static getRelatorioManifestacao(app, sql) {
         app.get("/relatorio/:ano", (req, res, next) => {
             var ano = req.params.ano;
             console.log(ano);
-            var query = "select SUBSTRING(dataManifestacao , 4, 2)," +
-                " count(tipo) from manifestacao where" +
+            var query = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', tipo," +
+                " count(tipo) as 'qtd manifestacao' from manifestacao where" +
                 " SUBSTRING(dataManifestacao , 7, 4) = " + "'" + ano + "'" +
-                " group by SUBSTRING(dataManifestacao , 4, 2)";
+                " group by SUBSTRING(dataManifestacao , 4, 2), tipo";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -22,11 +22,15 @@ class Relatorio {
             });
         });
     }
-    //e agora?
-    static getAllRelatorio(app, sql) {
+
+    //get todos os meses de manifestacao 
+    static getAllRelatorioManifestacao(app, sql) {
         app.get("/relatorio", (req, res, next) => {
-            console.log("chegou 1");
-            sql.query("select * from paciente", (err, result,) => {
+            var query = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', tipo," +
+                " count(tipo) as 'qtd manifestacao' from manifestacao" +
+                " group by SUBSTRING(dataManifestacao , 4, 2), tipo";
+            console.log(query);
+            sql.query(query, (err, result,) => {
                 if (result && result.length) {
                     console.log(result);
                     return res.status(200).json(result);
@@ -38,31 +42,24 @@ class Relatorio {
         });
     }
 
-    static postRelatorio(app, sql) {
-        app.post("/relatorio", (req, res, next) => {
-            n
-            var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Relatorio (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('"
-                + user.cns + "','" + user.dataNascimento + "','" + user.nome + "','" + user.endereco + "','"
-                + user.senha + "','" + user.telefone + "','" + user.email + "','" + user.idUbs + "');";
-            console.log(user);
+    //pegar ubs mais bem avaliada 
+    static getRankUbs(app, sql) {
+        app.get("/rank", (req, res, next) => {
+            var query = "select AVG(a.avaliacao) as 'media', u.nome, u.cnes from avaliacao a, ubs u" +
+                " where a.idUbs = u.cnes" +
+                " group by u.nome";
             console.log(query);
-
-            sql.query(query, function (error, result, fields) {
-                sql.on('error', function (err) {
-                    console.log("ERRO NO MYSQL", err);
-                });
-                var query2 = "SELECT * FROM Relatorio WHERE cns = '" + req.body.cns + "'"
-                console.log(query2);
-                sql.query(query2, function (e, r, f) {
-                    console.log("final " + r);
-                    return res.status(200).json(r);
-                })
+            sql.query(query, (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Relatorio nao encontrado' });
+                }
             });
         });
     }
 }
-
-
 
 module.exports = Relatorio;
