@@ -37,7 +37,7 @@ class Paciente {
     static postPaciente(app, sql) {
         app.post("/paciente", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            var query = "INSERT INTO Paciente (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('"
+            var query = "INSERT INTO Paciente values ('"
                 + user.cns + "','" + user.dataNascimento + "','" + user.nome + "','" + user.endereco + "','"
                 + user.senha + "','" + user.telefone + "','" + user.email + "','" + user.idUbs + "');";
             console.log(user);
