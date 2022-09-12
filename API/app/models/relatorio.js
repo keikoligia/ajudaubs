@@ -44,7 +44,7 @@ class Relatorio {
 
     //get qtd de manifestação  pipa pips pipa pips pips pips pip pip pip  pip pip pip pip pip pip
     static getQtdManifestacoes(app, sql) {
-        app.get("/qtdmanifestacoes", (req, res, next) => {
+        app.get("/quantidade", (req, res, next) => {
             var query = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', " +
                 "count(tipo) as 'qtd manifestacao' from manifestacao " +
                 "group by SUBSTRING(dataManifestacao , 4, 2)";
