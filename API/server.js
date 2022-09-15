@@ -14,6 +14,7 @@ const RemedioUbs = require("./app/models/remedio_ubs.js");
 const Remedio = require("./app/models/remedio.js");
 const Relatorio = require("./app/models/relatorio.js");
 const Manifestacao = require("./app/models/manifestacao.js");
+const Consulta = require("./app/models/consulta.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -71,6 +72,8 @@ Relatorio.getQtdManifestacoes(app, sql);
 Manifestacao.getManifestacao(app, sql);
 Manifestacao.getAllManifestacoes(app, sql);
 Manifestacao.postManifestacao(app, sql);
+
+Consulta.getConsulta(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
