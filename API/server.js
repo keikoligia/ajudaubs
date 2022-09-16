@@ -74,6 +74,8 @@ Manifestacao.getAllManifestacoes(app, sql);
 Manifestacao.postManifestacao(app, sql);
 
 Consulta.getConsulta(app, sql);
+Consulta.getConsultaId(app, sql);
+Consulta.postConsulta(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 

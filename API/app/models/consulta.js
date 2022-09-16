@@ -23,12 +23,31 @@ class Consulta {
         });
     }
 
+    static getConsultaId(app, sql) {
+        app.get("/consulta/:id", (req, res, next) => {
+            var idConsulta = req.params.id;
+
+            var query = "select * from consulta where idConsulta = '" + idConsulta + "'";
+            console.log(query);
+
+            sql.query(query, (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Consulta nao encontrada' });
+                }
+            });
+        });
+    }
+
     static postConsulta(app, sql) {
         app.post("/consulta", (req, res, next) => {
             var consulta = req.body; // pega as informacoes da requisicao
             var query = "INSERT INTO Consulta"
                 + "VALUES('" + consulta.idConsulta + "','" + consulta.idUbs + "," + consulta.idMedico + "','" + consulta.idPaciente + "','" + consulta.area + "',"
-                + consulta.dataMarcada + ",'" + consulta.bloco + "','" + consulta.descricao + "')";
+                + consulta.dataMarcada + "," + consulta.bloco + ",'" + consulta.descricao + "')";
             console.log(consulta);
             console.log(query);
 
