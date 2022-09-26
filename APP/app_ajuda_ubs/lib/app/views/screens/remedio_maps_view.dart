@@ -53,7 +53,7 @@ class _RemedioMapsViewState extends State<RemedioMapsView> {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.black,
         onPressed: () {
-          //local.getLocalHome();
+          local.getLocalHome();
         },
         child: const Icon(Icons.center_focus_strong),
       ),
