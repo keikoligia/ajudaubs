@@ -122,19 +122,19 @@ drop table Disponibilidade;
 
 create table Consulta( 
 idConsulta int PRIMARY KEY auto_increment, 
+idUbs char(11) not null,
 idMedico varchar(20) not null, 
 idPaciente char(15) not null,
 area varchar(100) not null,
-idDisponibilidade int not null,
+dataMarcada date not null,
+bloco int not null,
 descricao varchar(200) not null,            
 constraint fkConsultaCargoArea  FOREIGN key (area) references CargoArea (nomeCargo), 
 constraint fkConsultaPaciente   FOREIGN key (idPaciente) references Paciente (cns),
-constraint fkConsultaMedico   FOREIGN key (idMedico) references Funcionario (crm),
-constraint fkConsultaDisponibilidade   FOREIGN key (idDisponibilidade) references Disponibilidade (idDisponibilidade)
+constraint fkConsultaMedico   FOREIGN key (idMedico) references Funcionario (crm)
 );
 select * from Consulta;
 drop table Consulta;
-
 
 create table Manifestacao(
 protocolo char(8) primary key,
