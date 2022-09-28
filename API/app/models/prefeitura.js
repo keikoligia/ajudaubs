@@ -2,9 +2,9 @@
 class Prefeitura {
     static getPrefeitura(app, sql) {
         app.get("/prefeitura/:id", (req, res, next) => {
-            var cnsPrefeitura = req.params.id;
-            console.log(cnsPrefeitura);
-            var query = "SELECT * FROM Prefeitura WHERE municipio =" + "'" + municipio + "'";
+            var municipio = req.params.id;
+            console.log(municipio);
+            var query = "SELECT * FROM Prefeitura WHERE municipio = " + "'" + municipio + "'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -39,7 +39,7 @@ class Prefeitura {
             var user = req.body; // pega as informacoes da requisicao
             var query = "INSERT INTO Prefeitura values ('"
                 + user.municipio + "','" + user.estado + "','" + user.senha + "','" + user.foneOuvidoria + "','"
-                + user.emailOuvidoria + "','" + user.telefone + "');";
+                + user.emailOuvidoria + "','" + user.site + "');";
             console.log(user);
             console.log(query);
 
@@ -54,6 +54,7 @@ class Prefeitura {
                     return res.status(200).json(r);
                 })
             });
+
         });
     }
 }

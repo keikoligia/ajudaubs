@@ -15,6 +15,7 @@ const Remedio = require("./app/models/remedio.js");
 const Relatorio = require("./app/models/relatorio.js");
 const Manifestacao = require("./app/models/manifestacao.js");
 const Consulta = require("./app/models/consulta.js");
+const Prefeitura = require("./app/models/prefeitura.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -76,6 +77,10 @@ Manifestacao.postManifestacao(app, sql);
 Consulta.getConsulta(app, sql);
 Consulta.getConsultaId(app, sql);
 Consulta.postConsulta(app, sql);
+
+Prefeitura.getPrefeitura(app, sql);
+Prefeitura.getAllPrefeitura(app, sql);
+Prefeitura.postPrefeitura(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
