@@ -1,6 +1,5 @@
 
 class Relatorio {
-    //get quantidade da tabela remedioubs
     static getRelatorioManifestacao(app, sql) {
         app.get("/relatorio/:ano", (req, res, next) => {
             var ano = req.params.ano;

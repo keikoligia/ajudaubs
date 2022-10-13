@@ -1,6 +1,5 @@
 
 class Remedio_Ubs {
-    // Requisões: LOGIN
     static getRemedio_Ubs(app, sql) {
         app.get("/remedioubs/:id", (req, res, next) => {
             var idRemedioUbs = req.params.id;
@@ -19,6 +18,26 @@ class Remedio_Ubs {
             });
         });
     }
+
+    static getRemedio_Ubs(app, sql) {
+        app.get("/remedioubs/:nome", (req, res, next) => {
+            var idRemedioUbs = req.params.nome;
+            console.log(idRemedioUbs);
+            var query = "select u.nome from ubs u, remedioubs ru where u.cnes = ru.idubs and ru.idRemedio =" + "'" + idRemedioUbs + "'";
+            console.log(query);
+
+            sql.query(query, (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Ubs nao encontrada' });
+                }
+            });
+        });
+    }
+
     static getAllRemedio_Ubs(app, sql) {
         app.get("/remediosubs", (req, res, next) => {
             console.log("chegou 1");
