@@ -23,7 +23,10 @@ class Remedio_Ubs {
         app.get("/remedioubs/:nome", (req, res, next) => {
             var idRemedioUbs = req.params.nome;
             console.log(idRemedioUbs);
-            var query = "select u.nome from ubs u, remedioubs ru where u.cnes = ru.idubs and ru.idRemedio =" + "'" + idRemedioUbs + "'";
+            var query = "select u.cnes, u.nome,  u.endereco, u.senha, u.telefone, " +
+                "u.idPrefeitura, u.horario, u.email, u.latitude, u.longitude, " +
+                "u.fotoUrl, u.vinculo  from ubs u, remedioubs ru " +
+                "where u.cnes = ru.idubs and ru.quantidade>0 and idRemedio =" + "'" + idRemedioUbs + "'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
