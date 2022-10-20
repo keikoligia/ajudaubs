@@ -1,28 +1,28 @@
-Capital; Info; Estatísticas
-Porto Velho;17,9;IC=(12,2-23,5) CV=16,1%
-Rio Branco;22,1;IC=(15,9-28,3) CV=14,3%
-Manaus;13,7;IC=(10,1-17,3) CV=13,3%
-Boa Vista;23,1;IC=(16,7-29,4) CV=14,1%
-Belém;26,3;IC=(20,9-31,7) CV=10,5%
-Macapá;24,7;IC=(18,7-30,8) CV=12,4%
-Palmas *;*;* *
-Săo Luís;14,8;IC=(9,7-19,8) CV=17,4%
-Teresina;12,0;IC=(7,4-16,7) CV=19,9%
-Fortaleza;21,2;IC=(16,6-25,8) CV=11,1%
-Natal;15,1;IC=(10,7-19,6) CV=15,0%
-Joăo Pessoa;17,2;IC=(12,2-22,2) CV=14,7%
-Recife;10,4;IC=(6,5-14,3) CV=19,1%
-Maceió;12,7;IC=(8,7-16,8) CV=16,1%
-Aracaju *;*;* *
-Salvador;8,7;IC=(5,9-11,6) CV=16,8%
-Belo Horizonte;*;* *
-Vitória *;*;* *
-Rio de Janeiro;13,6;IC=(10,8-16,4) CV=10,5%
-Săo Paulo;7,4;IC=(5,7-9,2) CV=11,8%
-Curitiba *;*;* *
-Florianópolis *;*;* *
-Porto Alegre;*;* *
-Campo Grande;*;* *
-Cuiabá *;*;* *
-Goiânia *;*;* *
-Brasília;12,3;IC=(9,3-15,4) CV=12,7%
+Capital, Info, Estatísticas
+Porto Velho,17.9,IC=(12.2-23.5) CV=16.1%
+Rio Branco,22.1,IC=(15.9-28.3) CV=14.3%
+Manaus,13.7,IC=(10.1-17.3) CV=13.3%
+Boa Vista,23.1,IC=(16.7-29.4) CV=14.1%
+Belém,26.3,IC=(20.9-31.7) CV=10.5%
+Macapá,24.7,IC=(18.7-30.8) CV=12.4%
+Palmas *,*,* *
+Săo Luís,14.8,IC=(9.7-19.8) CV=17.4%
+Teresina,12.0,IC=(7.4-16.7) CV=19.9%
+Fortaleza,21.2,IC=(16.6-25.8) CV=11.1%
+Natal,15.1,IC=(10.7-19.6) CV=15.0%
+Joăo Pessoa,17.2,IC=(12.2-22.2) CV=14.7%
+Recife,10.4,IC=(6.5-14.3) CV=19.1%
+Maceió,12.7,IC=(8.7-16.8) CV=16.1%
+Aracaju *,*,* *
+Salvador,8.7,IC=(5.9-11.6) CV=16.8%
+Belo Horizonte,*,* *
+Vitória *,*,* *
+Rio de Janeiro,13.6,IC=(10.8-16.4) CV=10.5%
+Săo Paulo,7.4,IC=(5.7-9.2) CV=11.8%
+Curitiba *,*,* *
+Florianópolis *,*,* *
+Porto Alegre,*,* *
+Campo Grande,*,* *
+Cuiabá *,*,* *
+Goiânia *,*,* *
+Brasília,12.3,IC=(9.3-15.4) CV=12.7%

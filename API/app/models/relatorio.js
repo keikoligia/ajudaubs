@@ -9,26 +9,11 @@ class Relatorio {
                 " count(tipo) as 'qtd manifestacao' from manifestacao where" +
                 " SUBSTRING(dataManifestacao , 7, 4) = " + "'" + ano + "'" +
                 " group by SUBSTRING(dataManifestacao , 4, 2), tipo";
-            console.log(query);
-
-            var query2 = "select SUBSTRING(dataManifestacao , 4, 2) as 'mes', tipo," +
-                " count(tipo) as 'qtd manifestacao' from manifestacao" +
-                " group by SUBSTRING(dataManifestacao , 4, 2), tipo";
 
             sql.query(query1, (err, result,) => {
                 if (result && result.length) {
                     console.log(result);
-                    total_result = res.status(200).json(result);
-                }
-                else {
-                    return res.status(404).json({ error: 'Impossivel montar relatorio' });
-                }
-            });
-
-            sql.query(query2, (err, result,) => {
-                if (result && result.length) {
-                    console.log(result);
-                    total_resultreturn res.status(200).json(result);
+                    return res.status(200).json(result);
                 }
                 else {
                     return res.status(404).json({ error: 'Impossivel montar relatorio' });
