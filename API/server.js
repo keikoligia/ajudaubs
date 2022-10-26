@@ -16,6 +16,7 @@ const Relatorio = require("./app/models/relatorio.js");
 const Manifestacao = require("./app/models/manifestacao.js");
 const Consulta = require("./app/models/consulta.js");
 const Prefeitura = require("./app/models/prefeitura.js");
+const CargoArea = require("./app/models/cargoarea.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -81,6 +82,9 @@ Consulta.postConsulta(app, sql);
 Prefeitura.getPrefeitura(app, sql);
 Prefeitura.getAllPrefeitura(app, sql);
 Prefeitura.postPrefeitura(app, sql);
+
+CargoArea.getCargoArea(app, sql);
+CargoArea.getAllCargoArea(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
