@@ -65,7 +65,8 @@ class Relatorio {
         app.get("/rank", (req, res, next) => {
             var query = "select AVG(a.avaliacao) as 'media', u.nome, u.cnes from avaliacao a, ubs u" +
                 " where a.idUbs = u.cnes" +
-                " group by u.nome";
+                " group by u.nome order by" + 
+                " AVG(a.avaliacao)";
             console.log(query);
             sql.query(query, (err, result,) => {
                 if (result && result.length) {
