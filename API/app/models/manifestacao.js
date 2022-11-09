@@ -19,6 +19,24 @@ class Manifestacao {
         });
     }
 
+    static getManifestacaoUsuario(app, sql) {
+        app.get("/manifestacao/usuario/:id", (req, res, next) => {
+            var idPaciente = req.params.id;
+            var query = "SELECT * FROM manifestacao WHERE idPaciente =" + "'" + idPaciente + "';";
+            console.log(query);
+
+            sql.query(query, (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Manifestacao por usuário nao encontrada' });
+                }
+            });
+        });
+    }
+
     static getAllManifestacoes(app, sql) {
         app.get("/manifestacao", (req, res, next) => {
             sql.query("select * from manifestacao", (err, result,) => {

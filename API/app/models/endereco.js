@@ -1,6 +1,5 @@
 
 class Endereco {
-
     // Requisões: LOGIN
     static getEndereco(app, sql) {
         app.get("/endereco/:id", (req, res, next) => {
@@ -43,7 +42,6 @@ class Endereco {
             var user = req.body; // pega as informacoes da requisicao
             var query = "INSERT INTO Endereco (idEndereco, cep, rua, complemento, numero, bairro, municipio, estado) "
                 + "VALUES('" + user.idEndereco + "','" + user.cep + "','" + user.rua + "','" + user.complemento + "'," + user.numero + ",'" + user.bairro + "','" + user.municipio + "','" + user.estado + "')";
-
             console.log(user);
             console.log(query);
 

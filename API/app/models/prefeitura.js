@@ -1,12 +1,10 @@
 
-class Funcionario {
-
-    // Requisões: LOGIN
-    static getFuncionario(app, sql) {
-        app.get("/funcionario/:id", (req, res, next) => {
-            var cpfFuncionario = req.params.id;
-            console.log(cpfFuncionario);
-            var query = "SELECT * FROM Funcionario WHERE cpf =" + "'" + cpfFuncionario + "'";
+class Prefeitura {
+    static getPrefeitura(app, sql) {
+        app.get("/prefeitura/:id", (req, res, next) => {
+            var municipio = req.params.id;
+            console.log(municipio);
+            var query = "SELECT * FROM Prefeitura WHERE municipio = " + "'" + municipio + "'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -15,31 +13,33 @@ class Funcionario {
                     return res.status(200).json(result);
                 }
                 else {
-                    return res.status(404).json({ error: 'Funcionario nao encontrado' });
-                }
-            });
-        });
-    }
-    static getAllFuncionario(app, sql) {
-        app.get("/funcionario", (req, res, next) => {
-            console.log("chegou 1");
-            sql.query("select * from funcionario", (err, result,) => {
-                if (result && result.length) {
-                    console.log(result);
-                    return res.status(200).json(result);
-                }
-                else {
-                    return res.status(404).json({ error: 'Funcionario nao encontrado' });
+                    return res.status(404).json({ error: 'Prefeitura nao encontrada' });
                 }
             });
         });
     }
 
-    static postFuncionario(app, sql) {
-        app.post("/funcionario", (req, res, next) => {
+    static getAllPrefeitura(app, sql) {
+        app.get("/prefeitura", (req, res, next) => {
+            console.log("chegou 1");
+            sql.query("select * from Prefeitura", (err, result,) => {
+                if (result && result.length) {
+                    console.log(result);
+                    return res.status(200).json(result);
+                }
+                else {
+                    return res.status(404).json({ error: 'Prefeitura nao encontrado' });
+                }
+            });
+        });
+    }
+
+    static postPrefeitura(app, sql) {
+        app.post("/prefeitura", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
-            console.log(user)
-            var query = "INSERT INTO Funcionario (cpf, crm, cargo, nome, idUbs) VALUES('" + user.cpf + "','" + user.crm + "','" + user.cargo + "','" + user.nome + "','" + user.idUbs + "');";
+            var query = "INSERT INTO Prefeitura values ('"
+                + user.municipio + "','" + user.estado + "','" + user.senha + "','" + user.foneOuvidoria + "','"
+                + user.emailOuvidoria + "','" + user.site + "');";
             console.log(user);
             console.log(query);
 
@@ -47,17 +47,18 @@ class Funcionario {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM Funcionario WHERE cpf = '" + req.body.cpf + "'"
+                var query2 = "SELECT * FROM Prefeitura WHERE municipio = '" + req.body.municipio + "'"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r);
                     return res.status(200).json(r);
                 })
             });
+
         });
     }
 }
 
 
 
-module.exports = Funcionario;
+module.exports = Prefeitura;

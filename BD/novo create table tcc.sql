@@ -167,6 +167,12 @@ constraint fkRemedioUbsUbs   FOREIGN key (idUbs) references Ubs (cnes)
 select * from RemedioUbs;
 drop table RemedioUbs;
 
+CREATE TABLE ibge_plano 
+(
+    capital	varchar(300),
+    exames	varchar(300),
+    plano	varchar(300)
+);
 
 
 

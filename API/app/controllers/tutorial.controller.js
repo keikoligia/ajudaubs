@@ -16,6 +16,12 @@ exports.create = (req, res) => {
     published: req.body.published || false
   });
 
+  const funcionario = new Funcionario({
+    title: req.body.title,
+    description: req.body.description,
+    published: req.body.published || false
+  });
+
   // Save Tutorial in the database
   Tutorial.create(tutorial, (err, data) => {
     if (err)

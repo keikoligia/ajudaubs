@@ -15,6 +15,9 @@ const Remedio = require("./app/models/remedio.js");
 const Relatorio = require("./app/models/relatorio.js");
 const Manifestacao = require("./app/models/manifestacao.js");
 const Consulta = require("./app/models/consulta.js");
+const Prefeitura = require("./app/models/prefeitura.js");
+const CargoArea = require("./app/models/cargoarea.js");
+const Horario = require("./app/models/horario.js");
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -71,11 +74,20 @@ Relatorio.getQtdManifestacoes(app, sql);
 
 Manifestacao.getManifestacao(app, sql);
 Manifestacao.getAllManifestacoes(app, sql);
+Manifestacao.getManifestacaoUsuario(app, sql);
 Manifestacao.postManifestacao(app, sql);
 
 Consulta.getConsulta(app, sql);
 Consulta.getConsultaId(app, sql);
 Consulta.postConsulta(app, sql);
+Consulta.getConsultaMedico(app, sql);
+
+Prefeitura.getPrefeitura(app, sql);
+Prefeitura.getAllPrefeitura(app, sql);
+Prefeitura.postPrefeitura(app, sql);
+
+CargoArea.getCargoArea(app, sql);
+CargoArea.getAllCargoArea(app, sql);
 
 require("./app/routes/tutorial.routes.js")(app);
 
