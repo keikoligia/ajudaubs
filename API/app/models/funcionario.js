@@ -8,12 +8,14 @@ class Funcionario {
             var cnsFuncionario = req.params.id;
             console.log(cnsFuncionario);
             var query = "SELECT * FROM Funcionario WHERE cns =" + "'" + cnsFuncionario + "' or email =" + "'" + cnsFuncionario + "'";
+
             console.log(query);
 
             sql.query(query, (err, result,) => {
                 if (result && result.length) {
                     console.log(result[0]);
                     return res.status(200).json(result[0]);
+
                 }
                 else {
                     return res.status(404).json({ error: 'Funcionario nao encontrado' });
@@ -21,7 +23,6 @@ class Funcionario {
             });
         });
     }
-
     static getAllFuncionario(app, sql) {
         app.get("/funcionario", (req, res, next) => {
             console.log("chegou 1");
@@ -41,6 +42,7 @@ class Funcionario {
         app.post("/funcionario", (req, res, next) => {
             var user = req.body; // pega as informacoes da requisicao
             var query = "INSERT INTO Funcionario (cns, dataNascimento, nome, endereco, senha, telefone, email, idUbs) VALUES('" + user.cns + "','" + user.dataNascimento + "','" + user.nome + "','" + user.endereco + "','" + user.senha + "','" + user.telefone + "','" + user.email + "','" + user.idUbs + "');";
+
             console.log(user);
             console.log(query);
 
@@ -53,6 +55,7 @@ class Funcionario {
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r[0]);
                     return res.status(200).json(r[0]);
+
                 })
             });
         });

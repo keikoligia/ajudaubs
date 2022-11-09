@@ -36,7 +36,4 @@ class Ubs {
         });
     }
 }
-
-
-
 module.exports = Ubs;

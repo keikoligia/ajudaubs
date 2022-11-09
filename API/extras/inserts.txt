@@ -1,0 +1,114 @@
+
+/*Endereco
+CargoArea
+Horario
+Prefeitura
+TipoManifestacao
+Remedio
+Ubs
+Paciente
+Avaliacao
+Funcionario
+Disponibilidade
+Consulta
+Manifestacao
+RemedioUbs*/
+
+DELETE FROM Endereco WHERE idEndereco > 0;
+ALTER TABLE Endereco AUTO_INCREMENT = 1;
+select * from Endereco;
+INSERT INTO Endereco VALUES(null,'13088652', 'Rua Amadeu Gardini', '249', 'Jardim Santana', 'Campinas', 'SP');
+INSERT INTO Endereco VALUES(null,'13042420', 'Rua Harley Salvador Bove', '470', 'Parque Jambeiro', 'Campinas', 'SP');
+
+DELETE FROM CargoArea WHERE idCargoArea > 0;
+ALTER TABLE CargoArea AUTO_INCREMENT = 1;
+select * from CargoArea;
+INSERT INTO CargoArea VALUES(null,'Médico(a) Obstetra', 'Obstetrícia ');
+INSERT INTO CargoArea VALUES(null,'Secretário(a)', 'Adminstração ');
+
+
+DELETE FROM Horario WHERE idHorario > 0;
+ALTER TABLE Horario AUTO_INCREMENT = 1;
+select * from Horario;
+INSERT INTO Horario VALUES(null,'Sexta-Feira', '13:00', '17:30', '15:00:00', '16:00:00');
+INSERT INTO Horario VALUES(null,'Quinta-Feira', '10:00', '15:30', '12:00:00', '13:00:00');
+
+
+
+DELETE FROM Prefeitura WHERE idPrefeitura > 0;
+ALTER TABLE Prefeitura AUTO_INCREMENT = 1;
+select * from Prefeitura;
+INSERT INTO Prefeitura VALUES(null,'Campinas', 'SP', 'Campinas123', '08007727456', 'ouvidoria@campinas.sp.leg.br');
+INSERT INTO Prefeitura VALUES(null,'Valinhos', 'SP', 'Valinhos123', '08007777000', 'ouvidoria@valinhos.sp.leg.br');
+
+
+DELETE FROM TipoManifestacao WHERE idTipoManifestacao != 0;
+ALTER TABLE TipoManifestacao AUTO_INCREMENT = 1;
+select * from TipoManifestacao;
+INSERT INTO TipoManifestacao VALUES(null,'Reclamação', 'Escolha essa opção para demonstrar a sua insatisfação com um serviço público. Você pode fazer críticas, relatar ineficiência. Também se aplica aos casos de omissão na prestação um serviço público.');
+INSERT INTO TipoManifestacao VALUES(null,'Denúncia', 'Escolha essa opção para comunicar a ocorrência de um ato ilícito ou uma irregularidade praticada contra a administração pública.');
+INSERT INTO TipoManifestacao VALUES(null,'Sugestão', 'Escolha essa opção para solicitar a simplificação da prestação de um serviço público. Você poderá apresentar uma proposta de melhoria por meio deste formulário próprio.');
+INSERT INTO TipoManifestacao VALUES(null,'Elogio', 'Escolha essa opção se você foi bem atendido ou está satisfeito com o atendimento recebido e deseja compartilhar com a administração pública.');
+
+DELETE FROM Remedio WHERE idRemedio > 0;
+ALTER TABLE Remedio AUTO_INCREMENT = 1;
+select * from Remedio;
+INSERT INTO Remedio VALUES(null,'Metamizol', 'Dipirona', 'O metamizol é um analgésico não opioide comumente usado na medicina para tratar a dor. Assim como o paracetamol é mais usado para dores de cabeça, por exemplo, ou o ibuprofeno para dores com base na inflamação, o metamizol é usado para dores agudas.');
+
+DELETE FROM Ubs WHERE cnes = '00000000001';
+select * from Ubs;
+INSERT INTO Ubs VALUES('00000000001','Amadeu Mendes dos Santos', 1, 'ubs123', '1932461072', 1, 'Seg. a Sex. 6:00 às 18:00', ' saude.csjdsantamonica@campinas.sp.gov.br');
+INSERT INTO Ubs VALUES('00000000002','Julio Mesquita', 2, 'ubs123', '19994974618', 2, 'Seg. a Sex. 6:00 às 18:00', ' saude.csjdaurelia@campinas.sp.gov.br');
+
+
+DELETE FROM Paciente WHERE cns = '000000000000001';
+select * from Paciente;
+INSERT INTO Paciente VALUES('000000000000001','2004-05-08','Fabricio Onofre',1, 'Fabricio123',  '19994974618', 'fabricio.falcoon@gmail.com', '00000000001');
+INSERT INTO Paciente VALUES('000000000000002','2004-10-29','Ligia Keiko Carvalho', 2, 'Ligia123',  '19993710319', 'ligiakeiko@gmail.com', '00000000002');
+
+
+
+DELETE FROM Avaliacao WHERE idAvaliacao != 0;
+ALTER TABLE Avaliacao AUTO_INCREMENT = 1;
+select * from Avaliacao;
+INSERT INTO Avaliacao VALUES(null,'00000000001', '000000000000001', 3);
+INSERT INTO Avaliacao VALUES(null,'00000000002', '000000000000001', 2);
+INSERT INTO Avaliacao VALUES(null,'00000000002', '000000000000002', 4);
+INSERT INTO Avaliacao VALUES(null,'00000000001', '000000000000002', 2);
+
+
+
+DELETE FROM Funcionario WHERE cpf != '00000000000';
+select * from Funcionario;
+INSERT INTO Funcionario VALUES('00000000001','SP123456', 1, 'Simone de Rezende', '00000000001');
+INSERT INTO Funcionario VALUES('00000000002', null, 2, 'Maria Paula', '00000000002', 2);
+INSERT INTO Funcionario VALUES('00000000003', null, 2, 'Hercules Marques', '00000000002', 2);
+
+
+DELETE FROM Disponibilidade WHERE idDisponibilidade != 0;
+ALTER TABLE Disponibilidade AUTO_INCREMENT = 1;
+select * from Disponibilidade;
+INSERT INTO Disponibilidade VALUES(null,'SP123456', '00000000001', 1, '2022-06-30', 'S');
+INSERT INTO Disponibilidade VALUES(null,'SP123456', '00000000001', 2, '2022-06-30', 'S');
+INSERT INTO Disponibilidade VALUES(null,'SP123456', '00000000001', 3, '2022-06-30', 'S');
+
+DELETE FROM Consulta WHERE idConsulta != 0;
+ALTER TABLE Consulta AUTO_INCREMENT = 1;
+select * from Consulta;
+INSERT INTO Consulta VALUES(null,'SP123456', '000000000000001', 1, 1, 'Acompanhamento da gestação');
+INSERT INTO Consulta VALUES(null,'SP123456', '000000000000002', 1, 3, 'Teste de gravidez');
+
+
+DELETE FROM Manifestacao WHERE idManifestacao != 0;
+ALTER TABLE Manifestacao AUTO_INCREMENT = 1;
+select * from Manifestacao;
+INSERT INTO Manifestacao VALUES(null,'00000000001', '000000000000001', 1, 'R', 'Demora demasiada na fila de espera do postinho', '2022-05-27', '12345678');
+INSERT INTO Manifestacao VALUES(null,'00000000002', '000000000000002', 4, 'R', 'Otimo atendimento aos pacientes', '2022-06-28', '01234567');
+
+
+DELETE FROM RemedioUbs WHERE idManifestacao != 0;
+ALTER TABLE RemedioUbs AUTO_INCREMENT = 1;
+select * from RemedioUbs;
+INSERT INTO RemedioUbs VALUES(null, 1, '00000000001', 100, '2023-09-10', '2022-05-10');
+
+INSERT INTO RemedioUbs VALUES(null, 1, '00000000002', 50, '2023-09-10', '2022-05-10');
