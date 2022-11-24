@@ -26,7 +26,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-O AjudaUBS é uma aplicação mobile que visa atender aos cidadãos e a prefeitura, de forma que esse sistema permitirá um melhor controle sobre as manifestações públicas (Dúvidas, Sugestões, Elogios e Denúncias) enviadas pelos pacientes dos centros de saúde, a fim de ampliar sua eficiência e utilidade quanto a análise dos dados fornecidos, promovendo uma melhora no atendimento aos usuários do sistema de saúde municipal. Juntamente, com o acesso facilitado as diversas funcionalidade que o aplicativo dispõe, com o intuido de desburocratizar os serviços oferecidos pelos centros de saúde.
+O AjudaUBS é uma aplicação mobile que visa atender aos cidadãos e a prefeitura, de forma que esse sistema permitirá um melhor controle sobre as manifestações públicas (Dúvidas, Sugestões, Elogios e Denúncias) enviadas pelos pacientes dos centros de saúde, a fim de ampliar sua eficiência e utilidade quanto a análise dos dados fornecidos, promovendo uma melhora no atendimento aos usuários do sistema de saúde municipal. Juntamente, com o acesso facilitado às diversas funcionalidades que o aplicativo dispõe, com o intuito de desburocratizar os serviços oferecidos pelos centros de saúde.
 
 Projeto em desenvolvimento para disciplina Trabalho Profissional de Conclusão de Curso II, ministrado pela Prof° Simone Pierini do curso de Informática do <a href="https://cotuca.unicamp.br/cotuca/" target="_blank">COTUCA</a>.
 </p>
