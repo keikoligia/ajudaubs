@@ -4,7 +4,7 @@ class Remedio_Ubs {
         app.get("/remedioubs/:id", (req, res, next) => {
             var idRemedioUbs = req.params.id;
             console.log(idRemedioUbs);
-            var query = "SELECT * FROM RemedioUbs WHERE idRemedioUbs =" + "'" + idRemedioUbs + "'";
+            var query = "SELECT * FROM RemedioUbs WHERE idRemedio like " + "'" + idRemedioUbs + "%'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
@@ -26,7 +26,7 @@ class Remedio_Ubs {
             var query = "select u.cnes, u.nome,  u.endereco, u.senha, u.telefone, " +
                 "u.idPrefeitura, u.horario, u.email, u.latitude, u.longitude, " +
                 "u.fotoUrl, u.vinculo  from ubs u, remedioubs ru " +
-                "where u.cnes = ru.idubs and ru.quantidade>0 and idRemedio =" + "'" + idRemedioUbs + "'";
+                "where u.cnes = ru.idubs and ru.quantidade>0 and idRemedio like " + "'" + idRemedioUbs + "%'";
             console.log(query);
 
             sql.query(query, (err, result,) => {

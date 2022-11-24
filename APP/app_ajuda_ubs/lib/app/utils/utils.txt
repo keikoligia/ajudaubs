@@ -1,0 +1,17 @@
+
+
+TELA DOS GRAFICOS
+TELA PARA ACOMPANHAR MANIFESTAção
+TELA HOMEPAGE - telefone ouvidoria - acompanhar MANIFESTAção - qtd de MANIFESTAção R/P/A - qtd de consultas marcadas/passadas
+ARRUMAR AS IMAGENS DO WELCOME
+
+
+API ATUALIZAR PACIENTE
+
+
+RESOLVIDAS PENDENTES ANDAMENTTO
+R - P - A
+
+
+
+

@@ -1,28 +1,7 @@
-
 class Horario {
     static getHorario(app, sql) {
         app.get("/horario/:id", (req, res, next) => {
-            var idHorario = req.params.id;
-            console.log(cnsHorario);
-            var query = "SELECT * FROM Horario WHERE idHorario = " + idHorario;
-            console.log(query);
-
-            sql.query(query, (err, result,) => {
-                if (result && result.length) {
-                    console.log(result);
-                    return res.status(200).json(result);
-                }
-                else {
-                    return res.status(404).json({ error: 'Horario nao encontrado' });
-                }
-            });
-        });
-    }
-
-    static getHorarioFuncionario(app, sql) {
-        app.get("/horario/:idFuncionario", (req, res, next) => {
-            var idFuncionario = req.params.idFuncionario;
-            console.log(cnsHorario);
+            var idFuncionario = req.params.id;
             var query = "SELECT * FROM Horario WHERE idFuncionario = " + idFuncionario;
             console.log(query);
 
@@ -75,7 +54,5 @@ class Horario {
         });
     }
 }
-
-
 
 module.exports = Horario;

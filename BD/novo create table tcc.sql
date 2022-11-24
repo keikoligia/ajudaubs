@@ -26,9 +26,8 @@ select * from TipoManifestacao;
 drop table TipoManifestacao;
 
 create table Remedio(
-idRemedio int primary key auto_increment,
-nomeTecnico varchar(30) not null,
-nomeComercial varchar(30) not null,
+nomeTecnico varchar(30) not null unique,
+nomeComercial varchar(30) primary key,
 descricao varchar(300)
 );
 select * from Remedio;
@@ -156,23 +155,17 @@ drop table Manifestacao;
 
 create table RemedioUbs(
 idRemedioUbs int primary key auto_increment,
-idRemedio int not null,
+idRemedio varchar(30) not null,
 idUbs char(11) not null,
 quantidade int not null,
 dataValidade varchar(30) not null,
 dataLote varchar(30) not null,
-constraint fkRemedioUbsRemedio FOREIGN key (idRemedio) references Remedio (idRemedio), 
+constraint fkRemedioUbsRemedio FOREIGN key (idRemedio) references Remedio (nomeComercial), 
 constraint fkRemedioUbsUbs   FOREIGN key (idUbs) references Ubs (cnes)
 );
 select * from RemedioUbs;
 drop table RemedioUbs;
 
-CREATE TABLE ibge_plano 
-(
-    capital	varchar(300),
-    exames	varchar(300),
-    plano	varchar(300)
-);
 
 
 

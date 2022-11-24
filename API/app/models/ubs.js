@@ -1,6 +1,8 @@
 
 class Ubs {
 
+
+    // Requisões: LOGIN
     static getUbs(app, sql) {
         app.get("/ubs/:id", (req, res, next) => {
             var cnes = req.params.id;
@@ -48,7 +50,7 @@ class Ubs {
                 sql.on('error', function (err) {
                     console.log("ERRO NO MYSQL", err);
                 });
-                var query2 = "SELECT * FROM ubs WHERE cnes = '" + req.body.cnes + "'"
+                var query2 = "SELECT * FROM ubs WHERE cnes = '" + req.body.cnes + "';"
                 console.log(query2);
                 sql.query(query2, function (e, r, f) {
                     console.log("final " + r);

@@ -5,20 +5,14 @@
   "main": "server.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "plotly": "^1.0.6",
-    "request": "^2.88.2"
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
   },
+  "devDependencies": {},
   "scripts": {
-    "test": "mocha 'src/tests/**/*.tests.js'",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "chai": "^4.3.6",
-    "chai-http": "^4.3.0",
-    "mocha": "^10.1.0"
-  }
+  "license": "ISC"
 }

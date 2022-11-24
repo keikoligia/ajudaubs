@@ -54,7 +54,7 @@ drop table Remedio
 DELETE FROM Remedio WHERE idRemedio > 0;
 ALTER TABLE Remedio AUTO_INCREMENT = 1;
 select * from  Remedio;
-INSERT INTO Remedio VALUES(null,'Metamizol', 'Dipirona', 'O metamizol é um analgésico não opioide comumente usado na medicina para tratar a dor. Assim como o paracetamol é mais usado para dores de cabeça, por exemplo, ou o ibuprofeno para dores com base na inflamação, o metamizol é usado para dores agudas.');
+INSERT INTO Remedio VALUES('Metamizol', 'Dipirona', 'O metamizol é um analgésico não opioide comumente usado na medicina para tratar a dor. Assim como o paracetamol é mais usado para dores de cabeça, por exemplo, ou o ibuprofeno para dores com base na inflamação, o metamizol é usado para dores agudas.');
 
 alter table Ubs
 add column vinculo varchar(100) not null;
@@ -151,94 +151,9 @@ drop table RemedioUbs
 DELETE FROM RemedioUbs WHERE idRemedioUbs != 0;
 ALTER TABLE RemedioUbs AUTO_INCREMENT = 1;
 select * from RemedioUbs;
-INSERT INTO RemedioUbs VALUES(null, 4, '2040670', 100, '10/09/2023', '05/10/2023');
+INSERT INTO RemedioUbs VALUES(null, 'Dipirona', '2040670', 100, '10/09/2023', '05/10/2023');
 select * from Remedio;
 
 
-INSERT INTO RemedioUbs VALUES(null, 1, '00000000002', 50, '2023-09-10', '2022-05-10');
+INSERT INTO RemedioUbs VALUES(1, 'Dipirona', 50, '2023-09-10', '2022-05-10');
 INSERT INTO Ubs VALUES('00000000001','Amadeu Mendes dos Santos', '012345678912345', 'ubs123', '1932461072', 1, 'Seg. a Sex. 6:00 às 18:00', ' saude.csjdsantamonica@campinas.sp.gov.br')
-
-INSERT INTO ibge_plano VALUES ('TOTAL', '17,9', ' 40,1 ');
-INSERT INTO ibge_plano VALUES ('Porto Velho', '22,1', ' 25,9 ');
-INSERT INTO ibge_plano VALUES ('Rio Branco', '13,7', ' 12,1 ');
-INSERT INTO ibge_plano VALUES ('Manaus', '23,1', ' 24,9 ');
-INSERT INTO ibge_plano VALUES ('Boa Vista', '26,3', ' 11,9 ');
-INSERT INTO ibge_plano VALUES ('Belém', '24,7', ' 33,1 ');
-INSERT INTO ibge_plano VALUES ('Macapá', '*', ' 16,9 ');
-INSERT INTO ibge_plano VALUES ('Palmas', '14,8', ' 28,2 ');
-INSERT INTO ibge_plano VALUES ('São Luís', '12,0', ' 19,3 ');
-INSERT INTO ibge_plano VALUES ('Teresina', '21,2', ' 30,1 ');
-INSERT INTO ibge_plano VALUES ('Fortaleza', '15,1', ' 34,2 ');
-INSERT INTO ibge_plano VALUES ('Natal', '17,2', ' 31,5 ');
-INSERT INTO ibge_plano VALUES ('João Pessoa', '10,4', ' 29,9 ');
-INSERT INTO ibge_plano VALUES ('Recife', '12,7', ' 41,3 ');
-INSERT INTO ibge_plano VALUES ('Maceió', '*', ' 28,6 ');
-INSERT INTO ibge_plano VALUES ('Aracaju', '8,7', ' 37,5 ');
-INSERT INTO ibge_plano VALUES ('Salvador', '*', ' 38,2 ');
-INSERT INTO ibge_plano VALUES ('Belo Horizonte', '*', ' 51,6 ');
-INSERT INTO ibge_plano VALUES ('Vitória', '13,6', ' 54,9 ');
-INSERT INTO ibge_plano VALUES ('Rio de Janeiro', '7,4', ' 43,4 ');
-INSERT INTO ibge_plano VALUES ('São Paulo', '*', ' 45,7 ');
-INSERT INTO ibge_plano VALUES ('Curitiba', '*', ' 48,9 ');
-INSERT INTO ibge_plano VALUES ('Florianópolis', '*', ' 46,5 ');
-INSERT INTO ibge_plano VALUES ('Porto Alegre', '*', ' 47,8 ');
-INSERT INTO ibge_plano VALUES ('Campo Grande', '*', ' 38,4 ');
-INSERT INTO ibge_plano VALUES ('Cuiabá', '*', ' 42,2 ');
-INSERT INTO ibge_plano VALUES ('Goiânia', '12,3', '46');
-INSERT INTO ibge_plano VALUES ('Brasília', 'null', ' 39,1 ');
-/*
-INSERT INTO ibge_exame  VALUES ('Rio Branco', '22.1');
-INSERT INTO ibge_exame  VALUES ('Manaus', '13.7');
-INSERT INTO ibge_exame  VALUES ('Boa Vista', '23.1');
-INSERT INTO ibge_exame  VALUES ('Belém', '26.3');
-INSERT INTO ibge_exame  VALUES ('Macapá', '24.7');
-INSERT INTO ibge_exame  VALUES ('Palmas *', '*');
-INSERT INTO ibge_exame  VALUES ('Săo Luís', '14.8');
-INSERT INTO ibge_exame  VALUES ('Teresina', '12.0');
-INSERT INTO ibge_exame  VALUES ('Fortaleza', '21.2');
-INSERT INTO ibge_exame  VALUES ('Natal', '15.1');
-INSERT INTO ibge_exame  VALUES ('Joăo Pessoa', '17.2');
-INSERT INTO ibge_exame  VALUES ('Recife', '10.4');
-INSERT INTO ibge_exame  VALUES ('Maceió', '12.7');
-INSERT INTO ibge_exame  VALUES ('Aracaju *', '*');
-INSERT INTO ibge_exame  VALUES ('Salvador', '8.7');
-INSERT INTO ibge_exame  VALUES ('Belo Horizonte', '*');
-INSERT INTO ibge_exame  VALUES ('Vitória *', '*');
-INSERT INTO ibge_exame  VALUES ('Rio de Janeiro', '13.6');
-INSERT INTO ibge_exame  VALUES ('Săo Paulo', '7.4');
-INSERT INTO ibge_exame  VALUES ('Curitiba *', '*');
-INSERT INTO ibge_exame  VALUES ('Florianópolis *', '*');
-INSERT INTO ibge_exame  VALUES ('Porto Alegre', '*');
-INSERT INTO ibge_exame  VALUES ('Campo Grande', '*');
-INSERT INTO ibge_exame  VALUES ('Cuiabá *', '*');
-INSERT INTO ibge_exame  VALUES ('Goiânia *', '*');
-INSERT INTO ibge_exame  VALUES ('Brasília', '12.3');
-
-INSERT INTO ibge_plano VALUES ('Porto Velho', ' 25,9 ');
-INSERT INTO ibge_plano VALUES ('Rio Branco', ' 12,1 ');
-INSERT INTO ibge_plano VALUES ('Manaus', ' 24,9 ');
-INSERT INTO ibge_plano VALUES ('Boa Vista', ' 11,9 ');
-INSERT INTO ibge_plano VALUES ('Belém', ' 33,1 ');
-INSERT INTO ibge_plano VALUES ('Macapá', ' 16,9 ');
-INSERT INTO ibge_plano VALUES ('Palmas', ' 28,2 ');
-INSERT INTO ibge_plano VALUES ('São Luís', ' 19,3 ');
-INSERT INTO ibge_plano VALUES ('Teresina', ' 30,1 ');
-INSERT INTO ibge_plano VALUES ('Fortaleza', ' 34,2 ');
-INSERT INTO ibge_plano VALUES ('Natal', ' 31,5 ');
-INSERT INTO ibge_plano VALUES ('João Pessoa', ' 29,9 ');
-INSERT INTO ibge_plano VALUES ('Recife', ' 41,3 ');
-INSERT INTO ibge_plano VALUES ('Maceió', ' 28,6 ');
-INSERT INTO ibge_plano VALUES ('Aracaju', ' 37,5 ');
-INSERT INTO ibge_plano VALUES ('Salvador', ' 38,2 ');
-INSERT INTO ibge_plano VALUES ('Belo Horizonte', ' 51,6 ');
-INSERT INTO ibge_plano VALUES ('Vitória', ' 54,9 ');
-INSERT INTO ibge_plano VALUES ('Rio de Janeiro', ' 43,4 ');
-INSERT INTO ibge_plano VALUES ('São Paulo', ' 45,7 ');
-INSERT INTO ibge_plano VALUES ('Curitiba', ' 48,9 ');
-INSERT INTO ibge_plano VALUES ('Florianópolis', ' 46,5 ');
-INSERT INTO ibge_plano VALUES ('Porto Alegre', ' 47,8 ');
-INSERT INTO ibge_plano VALUES ('Campo Grande', ' 38,4 ');
-INSERT INTO ibge_plano VALUES ('Cuiabá', ' 42,2 ');
-INSERT INTO ibge_plano VALUES ('Goiânia', '46');
-INSERT INTO ibge_plano VALUES ('Brasília', ' 39,1 ');
-*/

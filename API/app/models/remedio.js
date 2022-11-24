@@ -4,7 +4,7 @@ class Remedio {
         app.get("/remedio/:nome", (req, res, next) => {
             var nomeRemedio = req.params.nome;
             console.log(nomeRemedio);
-            var query = "SELECT * FROM Remedio WHERE nomeComercial =" + "'" + nomeRemedio + "'";
+            var query = "SELECT * FROM Remedio WHERE nomeComercial  like " + "'" + nomeRemedio + "%' or nomeTecnico like " + "'" + nomeRemedio + "%'";
             console.log(query);
 
             sql.query(query, (err, result,) => {
